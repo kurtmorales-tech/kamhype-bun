@@ -8,6 +8,18 @@ import { resolve } from "node:path";
 const routes = ["/", "/story", "/work", "/curiosity", "/now"] as const;
 
 describe("multi-page renderer", () => {
+  test("personal ambition is grounded as a goal, not an achieved financial result", () => {
+    const html = renderRoute("/story").html;
+    expect(html).toContain('id="why-he-builds" aria-labelledby="purpose-title"');
+    expect(html).toContain("future child");
+    expect(html).toContain("retire early");
+    expect(html).toContain("without the support he hoped for");
+    expect(html).toContain("$10 million");
+    expect(html).toContain("not money he has already earned");
+    expect(html).toContain("There is no guaranteed timeline");
+    expect(html).toContain("learning Rust and cybersecurity");
+    expect(renderRoute("/").html).toContain('href="/story#why-he-builds"');
+  });
   for (const path of routes) {
     test(`${path} renders a complete, navigable document`, () => {
       const { html, status } = renderRoute(path);
