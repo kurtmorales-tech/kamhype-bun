@@ -1,5 +1,5 @@
-// Content for the Kamhype journey site — Kurt's own story, in his words.
-// Single source of truth: served at /api/journey and mirrored in public/index.html.
+// Structured facts for the Kamhype site, used by the rendered pages and /api/journey.
+// Keep editorial prose in src/site/pages.ts consistent with these facts.
 
 export const journey = {
   name: "Kurt Anthony Morales",
