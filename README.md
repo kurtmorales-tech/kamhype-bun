@@ -1,4 +1,4 @@
-# Kamhype — Not Given. Built.
+# Kamhype — From Tagum City to Las Vegas
 
 A **five-page Bun + TypeScript site** about Kurt Anthony Morales (Kamhype): from Tagum City, Davao del Norte, Mindanao to Las Vegas, with chapters on family, work, sport, curiosity, and web design.
 
@@ -31,9 +31,11 @@ Unknown pages get a helpful HTML 404 instead of a homepage fallback. `/story/` a
 - `src/site/pages.ts` — five composed pages and the 404 view.
 - `src/data/journey.ts` — structured biography shared by the page renderer and JSON API.
 - `src/server.ts` — Bun route handler and static asset serving.
-- `public/style.css`, `public/pages.css`, `public/main.js` — base design, route components and optional motion enhancement.
-- `public/assets/` — credited illustrative images, **not portraits of Kurt**.
-- `design/` — visual contract, route/component inventory and original story direction.
+- `public/style.css`, `public/pages.css`, `public/main.js` — editorial design, route components, and optional Grid/List and menu enhancements.
+- `public/assets/` — illustrative location/work photos, supplied personal portraits, artwork, website previews and completion-badge screenshots. Original files are preserved.
+- `src/site/asset-gallery.ts` — content-based placement and descriptions for 34 supplied images; see `design/ASSET-PLACEMENT.md`.
+- `scripts/prepare-images.ts` — run with `bun scripts/prepare-images.ts` (requires ImageMagick) to generate missing responsive WebP previews without overwriting originals.
+- `design/` — research notes, redesign plan, visual contract, component inventory and archived story direction.
 
 There are **zero runtime packages**. TypeScript and Bun types are dev-only. Before public deployment, confirm redistribution rights for the repository's existing images.
 

@@ -1,69 +1,43 @@
-# SYSTEM-SHEET — Kamhype multi-page site
+# SYSTEM-SHEET — Kamhype editorial gallery
 
-## Product
-- **What it does:** Introduces Kurt Anthony Morales and lets visitors browse distinct chapters of his journey without reading one very long page.
-- **Who uses it, how often:** Visitors and potential collaborators; typically first-time, occasionally returning for career/contact links.
-- **Stack / markup:** Bun + TypeScript server-rendered HTML strings with reusable components in `src/site/components.ts`. One stylesheet and tiny progressive-enhancement script, no runtime packages.
-- **Moment of care:** Each inner page has an honest previous/next chapter path, a persistent current-page navigation marker, and a useful 404 route back into the story; no client-side router or loading gate.
-- **Existing signature:** The Tagum-to-Las-Vegas March 2022 visual remains on Story only. Other pages should not compete with another spectacle.
+## Purpose and route map
+A five-page Bun-rendered biography: a first-time visitor should understand the Tagum-to-Vegas journey and choose a chapter quickly. Shared header, footer, navigation and pager hold the system together; the Story crossing provides the single narrative climax.
 
-## Route map
+- `/` — lit editorial introduction, asymmetrical gallery of four chapter links, short directional route and next-chapter close; highest traffic.
+- `/story` — Tagum/upbringing/education, then the full-bleed March 2022 Tagum → Las Vegas crossing; high traffic.
+- `/work` — construction, painting, events and sports in material/photo editorial rows; medium traffic.
+- `/curiosity` — computers, DIY and design in native accessible disclosures; medium traffic.
+- `/now` — current design work and verified outbound/contact links; high traffic.
+- unknown — HTTP 404 with a way back to Home/Story.
 
-| route | job | layout family | shared shell | traffic |
-| --- | --- | --- | --- | --- |
-| `/` | Introduce Kurt and choose a chapter | split photo hero + chapter index | yes | high |
-| `/story` | Tell the Tagum upbringing and March 2022 move | dark photographic masthead → light editorial origin → crossing | yes | high |
-| `/work` | Show hands-on work and competitive sport | typographic masthead → image-led work rows → sports pair | yes | medium |
-| `/curiosity` | Explore computers, DIY, design, and learning | dark type-led masthead → lime disclosure spread | yes | medium |
-| `/now` | Explain current design work and offer contact paths | dark masthead → illustrated workbench → lime close | yes | high |
-| unknown | Explain missing page and recover | compact dark error message + routes | yes | rare |
+`/api/journey` and `/health` remain Bun routes, unaffected by the visual system. `STORYBOARD.md` keeps the prior story beats as an archive; it does not mandate the former dark-everywhere layout.
 
-**Shell:** Document metadata, font links, skip link, desktop nav, native mobile `<details>` nav, footer, brand, shared CSS and tiny JS. Mobile navigation is a disclosure that works without JS. Current route uses `aria-current="page"` and a visible lime underline/dot. The brand always links to `/`, the contact shortcut to `/now#connect`.
+## Component/control inventory and budgets
 
-**Build order:** shared shell → home → story → now → work → curiosity → 404. Each route uses authored server HTML and shows content with JS disabled.
+- `PageShell` (one): metadata, fonts, skip link, light/dark-aware header, nav, footer, asset links; no client routing.
+- `NavLink` (one plus `aria-current` state), native `MobileMenu` (one, open/closed native details), `ActionLink` (filled or text variant, max **four** visibly distinct treatments), native `Disclosure` (one, open/closed state).
+- `ChapterIndex` (one ordered sequence with **gallery/list layout states**); `IndexViewButton` (two labels sharing one visual style, selected via `aria-pressed`, only after JS enhancement). Same anchors and DOM order in both modes.
+- `ChapterHero` (photo-led or type-led variant), `MediaFigure` (caption overlay or inline), `SectionRail` (inverted by page surface), `ChapterPager` (previous/next), `PhotoCredits` (one).
+- New control variants require an inventory update **before** CSS. For systemscan allow `button=5,link=14` because link classification includes a one-off skip link, social/external links and pager; do not silently widen these budgets.
 
-## Component inventory
+## State recipes
 
-| component | named variants | budget | used |
-| --- | --- | ---: | --- |
-| `NavLink` | default / current (state, not additional variant) | 1 + state | all routes |
-| `ActionLink` | lime-filled / ink-filled / inline-light / inline-dark | 4 | hero, chapter index, inner pages, close |
-| `MobileMenu` | closed / open (state) | 1 + state | all routes at ≤800px |
-| `Disclosure` | closed / open (state) | 1 + state | curiosity |
+- Links: readable default, hover only under `@media (hover:hover) and (pointer:fine)`, 3px visible `:focus-visible` outline, `aria-current="page"` + visible indicator for current. Link text alone must convey destination.
+- View buttons: native `<button type="button">`, visible label Grid/List, focus outline, `aria-pressed` state and short non-layout transition. Hidden if JS disabled; the gallery itself remains fully present.
+- Mobile navigation: `<details><summary>` with readable open/closed cue, Escape can close as enhancement; all chapter links accessible without JS.
+- Curiosity disclosures: native summary, visible open/closed cue; content is authored server-side and remains reachable without JS.
+- No client data-fetching, disabled controls or empty-data states exist. Google Fonts still makes a network request; system font fallbacks must remain usable if it fails. HTML 404 is the error/recovery state. No essential content starts at opacity 0.
 
-| non-control component | variants | used |
-| --- | --- | --- |
-| `PageShell` | one | all routes |
-| `SectionRail` | dark / light, driven by section context | story, work, now |
-| `ChapterHero` | photographic / type-led, same structure | inner routes |
-| `MediaFigure` | overlay-caption / inline-caption | home, story, work, now |
-| `WorkRow` | image / diagram | work |
-| `ChapterIndex` | one list row | home |
-| `ChapterPager` | previous and/or next | inner routes |
-| `PhotoCredits` | one | footer |
+## Acceptance
+- Maintain one H1, valid landmarks/heading hierarchy, no fake buttons, no inaccessible overlay.
+- 320 / 390 / 768 / 1440: no horizontal scroll, text wrap and image crops intentional. Current route marker and focus remain visible on both dark and lit surfaces.
+- No new Lusion images, licensed fonts or branded copy. Do not treat untracked files under `public/assets/` as approved assets.
+- Run tests, typecheck, build, design scan, systemscan and all-route real-browser/no-JS/reduced-motion checks.
 
-**Rule:** New control variants need a reason and an inventory update before CSS; do not invent unique cards for every page.
-
-## State matrix
-
-| control | default | hover | focus-visible | active | disabled / loading / empty / error | selected/current |
-| --- | --- | --- | --- | --- | --- | --- |
-| nav link | readable text | lime color on hover-capable pointer | 3px lime outline | native | n/a: navigation is always available | `aria-current="page"` + underline |
-| action link | named variant | color/translate on hover-capable pointer | 3px context-contrast outline | native | n/a: all destinations are known | n/a |
-| mobile menu | summary + links | lime on hover-capable pointer | 3px lime outline | native details | n/a: no network request | `[open]` marker and menu visible |
-| disclosure | summary + copy | underline/ink on hover-capable pointer | 3px ink outline | native details | n/a: content authored at render | `[open]` marker rotates |
-
-There are no forms, data fetching, spinners or client-side empty screens. The only error state is the server-rendered 404 page: "That chapter isn't here" with Home and Story recovery links. All text remains full contrast; no disabled or dimmed text states.
-
-**Reachability:** navigate to each exact route. Visit `/not-a-page` for error state; `#content` skip link and details are keyboard-accessible without JS. Current state changes by route.
-
-## Density
-No charts or tables. Titles do not truncate; long lines wrap at 390px and 320px. Captions are supplementary, story prose stays visible, and artwork is never represented as a portrait of Kurt.
-
-## Gate checklist
-- [x] Every route has a job and layout family.
-- [x] Shell, mobile collapse, and current marker are defined.
-- [x] Control variants have named budgets and states.
-- [x] No inaccessible empty/loading controls; 404 has recovery copy.
-- [x] Build order follows traffic and reuse.
-- [x] March 2022 remains the existing signature on Story; no second peak added.
+## Local verification (2026-10-26)
+- Bun: 11 tests pass; typecheck, build, `node --check public/main.js`, and `git diff --check` pass. The last LSP probe had inconclusive push-only clean rechecks and one auxiliary `hardcoded-url` warning on `href.startsWith("https://")` (a scheme guard, not a hardcoded destination); do not count that probe as wholly clean.
+- Chromium: all five pages and the HTML 404 checked at 320, 390, 768 and 1440px; no clipped headings, horizontal overflow, broken local anchors, failed loaded images or console errors. `/api/journey` and `/health` return JSON; unknown pages return 404.
+- Keyboard skip link, native menu, Escape, Grid/List buttons, and disclosures work. Without JavaScript, four chapter links remain visible, the menu and disclosures work, and view controls stay hidden. Reduced motion removes the media entrance animation.
+- Scoped design scan: zero findings in owned CSS, JS and renderer files. A full `public/` scan is blocked by an unrelated, untouched, untracked `public/assets/kmwebdesign.html`; that file and all other untracked assets were left alone.
+- Rendered system scan: **14 link variants / 5 button variants**, at the predeclared budgets. It warns about the intentionally unique scroll cue and Grid/List states, plus the broad responsive type scale (44 measured steps). Treat the type-scale warning as a maintenance concern, not a clean-scan claim.
+- Previously tracked illustrative images were the only assets referenced. Redistribution rights are still unverified; do not deploy publicly on the strength of this local check.

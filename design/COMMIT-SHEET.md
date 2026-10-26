@@ -1,27 +1,29 @@
-# Kamhype — design direction
+# Kamhype — editorial gallery direction (2026-10-26)
 
-## 1. Signature moment
-The move in March 2022 becomes a full-bleed two-city crossing: a diagonal cut between Tagum and Las Vegas with a giant date and an unbroken route line. The imagery carries the story; no fake map or fabricated statistics.
+This replaces the first-pass direction for the new implementation. Reference observations and uncertainties are in [LUSION-RESEARCH.md](LUSION-RESEARCH.md); implementation seams are in [REDESIGN-PLAN.md](REDESIGN-PLAN.md).
+
+## 1. Signature / moment of care
+The March 2022 Tagum → Las Vegas crossing is the only full-bleed dramatic interruption. Before it, a lit editorial index gives visitors a clear choice of chapters; after it, the story stays legible and grounded.
 
 ## 2. Color
-Primary: acid chartreuse `oklch(0.89 0.17 119)` / #dcff72. Tier: committed, but applied selectively to direction, links, and the crossing date. Mean background lightness target ≈ 0.40, because the story alternates night-work energy with a daylight memory of home; not lavender-tech, not cream-editorial, not black on every scene.
+Cool-neutral gallery `#f2f3f5` (approx. OKLCH L .95, C .004), ink `#171d1a`, night `#101918`, directional chartreuse `#dcff72` (approx. OKLCH .89 .17 119). Tier: **restrained** on the lit pages; the dark crossing earns the saturated accent. Target full-site mean lightness ~0.66 (light home/origin/curiosity alternating with dark work/crossing/now). Not lavender tech, warm cream, or the previous near-black-everywhere treatment. Gallery footage/reference is nearly monochrome; keep saturation lower than the old site outside the crossing.
 
 ## 3. Type
-Barlow Condensed for tall, physical poster headlines; DM Sans for humane long-form reading; IBM Plex Mono for small technical coordinates. Compressed display × neutral readable body. Inter is rejected because it erases the hand-made, industrial character of this specific journey.
+DM Sans regular/medium for gallery-scale editorial headlines and readable body, Barlow Condensed bold only where the physical work and crossing need impact, IBM Plex Mono sparingly for coordinates. This is a contrast of quiet gallery voice and worksite poster energy, not two competing similar sans typefaces throughout. Do not import Lusion's Aeonik font or default to Inter. Oversized hero text is a deliberate page subject, not an oversized prose heading.
 
 ## 4. Grid break
-The hero typography occupies most of the left and sits across the boundary of an offset two-photo right-hand montage; the crossing image itself is cut diagonally, not framed in a card grid.
+The chapter gallery shifts scale and alignment: the first item spans wide, the next two sit at unequal heights/widths, and the final item resolves into a horizontal strip. The story crossing slices across the editorial page as a single full-bleed cut. On narrow screens restore natural reading order, not a cropped collage.
 
 ## 5. Motion budget
-Two active families only: a slow route-orbit ambient loop in the hero; restrained image/type entrance reveals triggered once by IntersectionObserver. The crossing remains legible in a static frame. No continuous scroll listener, video, or WebGL.
+Two families maximum: (1) subtle, one-time transform/opacity entrance for visual media, (2) a decorative directional route line tied to scroll only when native CSS scroll-driven animation and its full range support are present. No essential text opacity gate, no JS scroll handler, no continuous heavy canvas/WebGL, no sound. UI toggle response ~150ms; native menu/disclosure stays usable without animation. Reduced motion removes transform/scroll movement but preserves focus and state.
 
 ## 6. Reflex check
-(a) Portfolio reflex: a black page with generic neon-glow UI, tiny mono labels everywhere and a stats row. (b) Second-order reflex: an all-beige editorial manifesto with an oversized serif. (c) Ours: industrial condensed type, actual location/trade imagery, a lime direction line and a daylit origin scene. The visual language comes from movement and making, not software aesthetics.
+First-order personal portfolio reflex: black surface, lime/glow, enormous condensed slogan, stats and a card grid. Second-order reflex: cream serif manifesto and gratuitous editorial emptiness. Chosen deviation: documentary geography and real kinds of labor in a **cool-lit** modular gallery, with one dark crossing that carries the factual move rather than invented spectacle. The reference supplies a browsing rhythm, not Kurt's identity.
 
-## 7. House tells broken
-1. Near-black everything → alternate to a light Tagum/origin spread and a bright citrus curiosity spread.
-2. Wordmark-as-hero → a sentence about the life, "NOT GIVEN. BUILT.", with the person's full name clearly beneath it.
-3. Logo/status/action header → one small wordmark and plain navigation; location appears as meaningful context within the page rather than decorative HUD chrome.
+## 7. House tells deliberately broken
+1. Near-black by default → a bright home/index and origin pages; dark is a narrative cut, not the site wallpaper.
+2. Service-label-on-every-corner → one purposeful chapter index marker or location label; larger legible navigation and fewer pseudo-instrument labels.
+3. Scroll-instruction footer → no repeated decorative scroll prompts. The visible next chapter and gallery do the wayfinding.
 
 ## Constraints
-Existing licensed/credited repository assets only; they illustrate locations and kinds of work, not Kurt's portrait. No invented testimonial, diploma, award counts, client list, or self-declared ranking. Core content readable without JavaScript, and reduced-motion remains fully illustrated.
+No borrowed logos, screenshots, typeface files, project images or copy from Lusion. No invented credentials, quotes, trophy counts, degrees, timelines or client list. Prior existing illustrative photo redistribution rights remain a publishing question. The full page must be readable and navigable with JavaScript disabled and in reduced motion.

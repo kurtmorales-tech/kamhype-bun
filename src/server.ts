@@ -66,7 +66,7 @@ const server = Bun.serve({
     if (url.pathname === "/health") return json({ ok: true, runtime: "bun", version: Bun.version });
     if (url.pathname === "/api/journey") return json(journey);
 
-    if (url.pathname === "/style.css" || url.pathname === "/pages.css" || url.pathname === "/main.js" || url.pathname === "/favicon.svg" || url.pathname.startsWith("/assets/")) {
+    if (url.pathname === "/style.css" || url.pathname === "/pages.css" || url.pathname === "/home.css" || url.pathname === "/main.js" || url.pathname === "/favicon.svg" || url.pathname.startsWith("/assets/")) {
       return serveStatic(url.pathname);
     }
 

@@ -27,6 +27,11 @@ export const journey = {
     "Founder, KM Web Design",
     "Manager, Ravfia Strategic Operations LLC",
   ],
+  learningFocus: {
+    topics: ["Rust", "Cybersecurity"],
+    companion: "Local AI agents",
+    summary: "Kamhype is focused on learning Rust and cybersecurity, working with AI agents running locally as part of his learning process.",
+  },
   trait: {
     title: "Curious about everything",
     detail:
