@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" href="data:,"/>
+<title>Kurt Anthony Morales (Kamhype) — US Journey & Career</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080a0b; --bg2:#0e1214; --panel:#12181b; --panel2:#171f23;
+  --ink:#f5f1e6; --muted:#b8b4a6; --faint:#8a877c;
+  --gold:#f2c230; --gold2:#ffdc6b; --cyan:#5ad6cf; --line:#2a3236; --line2:#3a4449;
+  --chip:#1a2226; --hero-ink:#fff8e6;
+  --radius:18px;
+}
+@media (prefers-color-scheme: light){
+  :root{ --bg:#f3f0e7; --bg2:#ece8db; --panel:#ffffff; --panel2:#f8f6ef; --ink:#131619; --muted:#4d4a42; --faint:#76736a; --line:#ddd8c8; --line2:#c9c3ae; --chip:#fff; --gold:#8a6800; --gold2:#8a6800; --cyan:#0b6f6a; }
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,system-ui,sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:inherit} img{max-width:100%;display:block}
+.mono{font-family:"JetBrains Mono",monospace}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+/* HUD */
+.hud{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.hud-in{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.hud b{color:var(--gold);font-size:12px}
+.hud nav{display:flex;gap:16px;flex-wrap:wrap}
+.hud nav a{text-decoration:none;color:var(--muted)} .hud nav a:hover{color:var(--gold)}
+.dot{width:7px;height:7px;border-radius:50%;background:#43d17c;display:inline-block;box-shadow:0 0 0 4px rgba(67,209,124,.15)}
+@media(max-width:760px){.hud nav{display:none}.hud-name{display:none}.hud-in{flex-wrap:nowrap;white-space:nowrap}}
+/* HERO */
+.hero{position:relative;background:#060809;color:var(--hero-ink);overflow:hidden;--gold:#f2c230;--gold2:#ffdc6b;--cyan:#5ad6cf}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;opacity:.62}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,7,.62),rgba(4,6,7,.28) 45%,#080a0b 96%)}
+#stars{position:absolute;inset:0;z-index:1;opacity:.5}
+.hero-in{position:relative;z-index:2;padding:64px 0 0}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.pill{border:1px solid rgba(255,255,255,.35);padding:7px 11px;border-radius:999px;background:rgba(0,0,0,.35)}
+.pill.gold{border-color:var(--gold);color:var(--gold2)}
+h1{font-family:Unbounded,sans-serif;font-weight:900;line-height:.98;letter-spacing:-.01em;font-size:clamp(40px,8.2vw,92px);margin:22px 0 6px;text-transform:uppercase}
+h1 .thin{display:block;font-weight:500;font-size:.42em;letter-spacing:.06em;color:var(--gold2);margin-top:14px}
+.alias{font-family:"JetBrains Mono",monospace;color:var(--cyan);letter-spacing:.2em;font-size:13px;text-transform:uppercase}
+.hero-lede{max-width:680px;font-size:clamp(17px,2.4vw,22px);line-height:1.55;color:#e9e4d4;margin:20px 0 0}
+.hero-lede strong{color:#fff}
+.route{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin:34px 0 0;padding:18px;border:1px solid rgba(255,255,255,.22);background:rgba(5,8,9,.66);border-radius:var(--radius)}
+.route .city{font-family:Unbounded,sans-serif;font-size:15px}
+.route .sub{font-family:"JetBrains Mono",monospace;font-size:11px;color:#c9c4b2;letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.route .arrow{font-family:"JetBrains Mono",monospace;color:var(--gold);text-align:center;font-size:12px;letter-spacing:.1em}
+.route .right{text-align:right}
+@media(max-width:640px){.route{grid-template-columns:1fr}.route .right{text-align:left}.route .arrow{text-align:left}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.18);margin-top:18px;border-radius:var(--radius);overflow:hidden}
+.stat{background:rgba(7,10,11,.88);padding:18px}
+.stat .num{font-family:Unbounded,sans-serif;font-size:clamp(22px,3.6vw,36px);color:#ffdc6b}
+.stat .lab{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#c9c4b2;background:transparent;margin-top:5px;line-height:1.5}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr}}
+.ticker{position:relative;z-index:2;margin-top:34px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18);overflow:hidden;white-space:nowrap;background:rgba(0,0,0,.4)}
+.ticker-track{display:inline-block;padding:10px 0;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;animation:tick 28s linear infinite}
+.ticker span{margin:0 18px}.ticker b{color:var(--gold)}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none}}
+/* SECTIONS */
+section{padding:72px 0}
+.kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:1px;background:var(--gold)}
+h2{font-family:Unbounded,sans-serif;font-size:clamp(28px,4.6vw,46px);line-height:1.08;margin:14px 0 14px;font-weight:700}
+.lede{font-size:18px;color:var(--muted);max-width:760px}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:start}
+@media(max-width:860px){.grid2{grid-template-columns:1fr}}
+.frame{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+.frame img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.frame .cap{position:absolute;left:12px;bottom:12px;background:rgba(4,6,7,.82);color:#f5f1e6;padding:8px 12px;border-radius:10px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em}
+.facts{display:grid;gap:10px;margin-top:18px}
+.fact{display:flex;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 16px}
+.fact .n{font-family:"JetBrains Mono",monospace;color:var(--gold);font-weight:700}
+.fact p{margin:0}.fact b{display:block}
+/* TIMELINE */
+.tl-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
+.tl-tab{appearance:none;border:1px solid var(--line2);background:var(--panel);color:var(--ink);padding:11px 15px;border-radius:999px;font:700 13px Manrope;cursor:pointer}
+.tl-tab[aria-selected="true"]{background:var(--gold);border-color:var(--gold);color:#171300}
+.tl-panel{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:26px;display:grid;grid-template-columns:200px 1fr;gap:24px}
+@media(max-width:700px){.tl-panel{grid-template-columns:1fr}}
+.tl-when{font-family:Unbounded,sans-serif;font-size:22px;color:var(--gold)}
+.tl-panel h3{margin:0 0 8px;font-size:24px}
+.tl-panel p{color:var(--muted);margin:0}
+.tl-tags{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-family:"JetBrains Mono",monospace;font-size:11px;border:1px solid var(--line2);padding:6px 9px;border-radius:999px;color:var(--muted)}
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+@media(max-width:900px){.cards{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.card img{height:210px;width:100%;object-fit:cover}
+.card-in{padding:20px}.card h3{margin:0 0 8px;font-size:20px}.card p{margin:0;color:var(--muted)}
+.card .idx{font-family:"JetBrains Mono",monospace;color:var(--gold);font-size:11px;letter-spacing:.16em}
+/* SPORTS */
+.sport{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+@media(max-width:860px){.sport{grid-template-columns:1fr}}
+.sport-card{border-radius:22px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.sport-card img{height:280px;width:100%;object-fit:cover}
+.sport-in{padding:22px}.sport-in h3{font-family:Unbounded,sans-serif;font-size:21px;margin:0 0 8px}.sport-in p{color:var(--muted);margin:0}
+/* LAB */
+.lab{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}
+.chipbtn{appearance:none;border:1px solid var(--line2);background:var(--panel);color:var(--ink);border-radius:12px;padding:12px 15px;font:800 14px Manrope;cursor:pointer}
+.chipbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lab-out{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px;min-height:150px}
+.lab-out h3{margin:0 0 8px;font-size:22px}.lab-out p{margin:0;color:var(--muted);max-width:720px}
+.meter{height:8px;background:var(--chip);border:1px solid var(--line);border-radius:99px;margin-top:18px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--gold);width:0;transition:width .6s ease}
+/* NOW */
+.now-img{border-radius:22px;overflow:hidden;border:1px solid var(--line)} .now-img img{width:100%;aspect-ratio:21/9;object-fit:cover}
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+@media(max-width:860px){.roles{grid-template-columns:1fr}}
+.role{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:19px}
+.role .r{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.role h3{margin:8px 0 6px;font-size:19px}.role p{margin:0;color:var(--muted);font-size:15px}
+.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:26px}
+@media(max-width:860px){.principles{grid-template-columns:1fr 1fr}}
+.pr{background:var(--panel);padding:20px}.pr .pn{font-family:"JetBrains Mono",monospace;color:var(--gold)} .pr h3{margin:8px 0 6px;font-size:17px}.pr p{margin:0;color:var(--muted);font-size:14px}
+.quote{font-family:Unbounded,sans-serif;font-size:clamp(24px,4vw,40px);line-height:1.25;text-align:center;max-width:900px;margin:0 auto}
+.quote em{color:var(--gold);font-style:normal}
+footer{border-top:1px solid var(--line);padding:36px 0 46px;background:var(--bg2)}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot a{color:var(--gold);font-weight:700;text-decoration:none}
+.small{color:var(--faint);font-size:13px}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:99}
+:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<header class="hud"><div class="wrap hud-in">
+  <div><b>KAMHYPE</b><span class="hud-name"> &nbsp;·&nbsp; KURT ANTHONY MORALES</span></div>
+  <nav aria-label="Sections"><a href="#origin">Origin</a><a href="#journey">Journey</a><a href="#work">Work</a><a href="#sports">Sports</a><a href="#curiosity">Curiosity</a><a href="#now">Now</a></nav>
+  <div><span class="dot"></span> LAS VEGAS · <span id="clock">--:--</span> PT</div>
+</div></header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"><img src="assets/vegas.jpg" alt="Las Vegas Strip at night, the city Kurt moved to in the United States"></div>
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <div class="hero-tags"><span class="pill gold">US Journey &amp; Career</span><span class="pill">Tagum City, PH → Las Vegas, USA</span><span class="pill">Est. March 2022 — USA Chapter</span></div>
+    <h1>Kurt Anthony Morales <span class="thin">Built by hand.<br>Rebuilt by design.</span></h1>
+    <div class="alias">// also known as Kamhype</div>
+    <p class="hero-lede">No diploma. No shortcuts. No one handed him a map. Kurt grew up poor in Mindanao, was raised by his grandparents, worked with his hands — then crossed an ocean in <strong>March 2022</strong> and started building a new life in America, one skill at a time.</p>
+
+    <div class="route" aria-label="Journey route">
+      <div><div class="city">TAGUM CITY</div><div class="sub">Davao del Norte · Mindanao · Philippines</div></div>
+      <div class="arrow">✈ &nbsp;MARCH 2022&nbsp; ───────►</div>
+      <div class="right"><div class="city">LAS VEGAS, NEVADA</div><div class="sub">United States · Current base</div></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num" data-count="10">0</div><div class="lab">Highest grade finished<br>Grade 7–10 · No K-12</div></div>
+      <div class="stat"><div class="num"><span data-count="2022">0</span></div><div class="lab">Year he moved to the US<br>March 2022</div></div>
+      <div class="stat"><div class="num" data-count="3">0</div><div class="lab">Hands-on trades first<br>Construction · Paint · Events</div></div>
+      <div class="stat"><div class="num">∞</div><div class="lab">Curiosity level<br>His #1 problem — and engine</div></div>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+</div>
+
+<!-- ORIGIN -->
+<section id="origin"><div class="wrap">
+  <div class="kicker">01 · Origin</div>
+  <h2>Tagum City is where<br>the story starts.</h2>
+  <div class="grid2">
+    <div>
+      <p class="lede">Kurt comes from Tagum City, in the province of Davao del Norte, on the island of Mindanao in the Philippines. He grew up poor, in a broken family, and was raised by his grandparents.</p>
+      <p style="color:var(--muted)">That start didn't give him much — but it gave him the two things he still runs on today: hard work, and the habit of figuring things out himself. When you don't have much, you learn how things work. You fix it, you build it, or you go without.</p>
+      <div class="facts">
+        <div class="fact"><span class="n">A</span><p><b>Raised by his grandparents</b><span style="color:var(--muted)">The people who raised him in Tagum City while life was hard around him.</span></p></div>
+        <div class="fact"><span class="n">B</span><p><b>School stopped at Grade 10</b><span style="color:var(--muted)">Grade 7–10 only. He did not finish high school and did not go through K-12. Everything after that, he taught himself.</span></p></div>
+        <div class="fact"><span class="n">C</span><p><b>Poor — but not stuck</b><span style="color:var(--muted)">Poverty was the starting point, never the plan. Work started early, and it started with his hands.</span></p></div>
+      </div>
+    </div>
+    <figure class="frame" style="margin:0"><img src="assets/tagum.jpg" alt="Aerial view of Tagum City, Davao del Norte, Mindanao, Philippines"><figcaption class="cap">TAGUM CITY · DAVAO DEL NORTE · MINDANAO</figcaption></figure>
+  </div>
+</div></section>
+
+<!-- JOURNEY TIMELINE -->
+<section id="journey" style="background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="wrap">
+  <div class="kicker">02 · The Journey</div>
+  <h2>Six chapters.<br>One direction: forward.</h2>
+  <p class="lede">Pick a chapter. This is the route from a construction site in the Philippines to a design desk in Las Vegas.</p>
+  <div class="tl-tabs" role="tablist" aria-label="Journey chapters" id="tlTabs"></div>
+  <div class="tl-panel" role="tabpanel"><div><div class="tl-when" id="tlWhen"></div><div class="mono" style="color:var(--faint);font-size:11px;letter-spacing:.14em;margin-top:8px" id="tlLoc"></div></div><div><h3 id="tlTitle"></h3><p id="tlBody"></p><div class="tl-tags" id="tlTags"></div></div></div>
+</div></section>
+
+<!-- WORK -->
+<section id="work"><div class="wrap">
+  <div class="kicker">03 · Worked With His Hands</div>
+  <h2>Before the keyboard,<br>there was the job site.</h2>
+  <p class="lede">Kurt's first career wasn't on a screen. It was labor — real, physical, get-it-done work in the Philippines.</p>
+  <div class="cards">
+    <article class="card"><img src="assets/construction.jpg" alt="Construction workers building a road in the Philippines"><div class="card-in"><div class="idx">JOB / 01</div><h3>Construction Laborer</h3><p>Heavy work, hot days, honest pay. Construction taught him endurance, teamwork, and that a finished job is a promise you keep with your hands.</p></div></article>
+    <article class="card"><img src="assets/painter.jpg" alt="Paint laborer painting a wall"><div class="card-in"><div class="idx">JOB / 02</div><h3>Paint Laborer</h3><p>Painting is detail work — prep, patience, clean lines. It's the first place his eye for finish and design quietly started training.</p></div></article>
+    <article class="card"><img src="assets/basketball.jpg" alt="Street basketball game in the Philippines, the kind of community scene behind local events"><div class="card-in"><div class="idx">JOB / 03</div><h3>Event Organizing</h3><p>Putting events together meant people, timing, and problems solved on the spot. Organizing taught him how to run something from zero to done.</p></div></article>
+  </div>
+</div></section>
+
+<!-- SPORTS -->
+<section id="sports" style="padding-top:0"><div class="wrap">
+  <div class="kicker">04 · Sports</div>
+  <h2>Competitive long before<br>he was professional.</h2>
+  <p class="lede">Work was only half the life. On the court and at the pool table, Kurt competed — and collected a lot of trophies doing it.</p>
+  <div class="sport">
+    <article class="sport-card"><img src="assets/basketball.jpg" alt="Street basketball in the Philippines, played barefoot and in sandals on a neighborhood court"><div class="sport-in"><h3>🏀 Basketball</h3><p>In the Philippines, basketball isn't a hobby — it's the neighborhood. Kurt played the street game the way it's played at home: tough, fast, and for pride. That competitive edge never left him; today he still runs with the LV Pinoy Ballers community in Las Vegas.</p></div></article>
+    <article class="sport-card"><img src="assets/billiards.jpg" alt="Billiard balls racked on a pool table"><div class="sport-in"><h3>🎱 Billiards</h3><p>Billiards is geometry, patience, and nerve — reading angles three shots ahead. Kurt played seriously and won a lot of trophies across basketball and billiards. Same lesson in both: study the table, then commit to the shot.</p></div></article>
+  </div>
+</div></section>
+
+<!-- CURIOSITY LAB -->
+<section id="curiosity" class="lab"><div class="wrap">
+  <div class="kicker">05 · The Curiosity Lab</div>
+  <h2>His #1 problem?<br>Curious about everything.</h2>
+  <p class="lede">Ask Kurt what his biggest problem is and he'll tell you straight: he's curious about everything — mostly computers and DIY stuff. That "problem" is also the reason a laborer became a web designer. Tap a topic and see where the curiosity went.</p>
+  <div class="chips" id="chips"></div>
+  <div class="lab-out"><h3 id="labTitle"></h3><p id="labBody"></p><div class="meter" aria-hidden="true"><i id="labMeter"></i></div><div class="mono" style="font-size:11px;color:var(--faint);margin-top:8px;letter-spacing:.1em" id="labNote"></div></div>
+</div></section>
+
+<!-- NOW -->
+<section id="now"><div class="wrap">
+  <div class="kicker">06 · America — Now</div>
+  <h2>From Tagum to Vegas.<br>From labor to design.</h2>
+  <p class="lede">March 2022 changed the address. It didn't change the work ethic — it gave it new tools. In the US, Kurt kept hustling, kept studying, and turned years of self-teaching into a design career.</p>
+  <figure class="now-img" style="margin:22px 0 0"><img src="assets/designer-desk.jpg" alt="Illustration of a futuristic designer workstation with website wireframes, DIY tools and Las Vegas at night through the window"></figure>
+  <div class="roles">
+    <div class="role"><div class="r">Design · Pro Level</div><h3>Web Designer &amp; Frontend Developer</h3><p>The designer other people ask for advice — clean, fast, modern websites built with a pro eye and a laborer's discipline for finishing.</p></div>
+    <div class="role"><div class="r">Founder</div><h3>KM Web Design</h3><p>His own web design studio — the business his curiosity built, at kmwebdesign.xyz.</p></div>
+    <div class="role"><div class="r">Operations</div><h3>Manager — Ravfia Strategic Operations LLC</h3><p>Manager at Ravfia Strategic Operations LLC in Las Vegas — running field businesses with the same direction → coordination → delivery system he learned on job sites.</p></div>
+  </div>
+
+  <div class="principles">
+    <div class="pr"><div class="pn">P—01</div><h3>Hard work first</h3><p>Talent is nice. Showing up every day is the actual system.</p></div>
+    <div class="pr"><div class="pn">P—02</div><h3>Learn it yourself</h3><p>No diploma didn't mean no education. It meant self-education.</p></div>
+    <div class="pr"><div class="pn">P—03</div><h3>Finish the job</h3><p>From a painted wall to a shipped website — done means done.</p></div>
+    <div class="pr"><div class="pn">P—04</div><h3>Stay curious</h3><p>Computers, DIY, design, business — the questions never stop.</p></div>
+  </div>
+
+  <div style="margin-top:64px"><p class="quote">“I didn't finish school.<br>I never stopped <em>learning</em>.”</p><p class="mono" style="text-align:center;color:var(--faint);font-size:12px;letter-spacing:.16em;margin-top:16px">— THE KAMHYPE RULE</p></div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="foot">
+    <div><div class="mono" style="color:var(--gold);letter-spacing:.14em;font-size:12px">KURT ANTHONY MORALES · KAMHYPE</div>
+    <p class="small" style="max-width:420px">Tagum City, Davao del Norte, Mindanao → Las Vegas, Nevada, USA · Moved March 2022.<br>Web Designer &amp; Frontend Developer · Founder, KM Web Design · Manager, Ravfia Strategic Operations LLC.</p></div>
+    <div class="small" style="line-height:2">
+      Instagram — <a href="https://www.instagram.com/kamhypeofficial" target="_blank" rel="noopener">@kamhypeofficial</a><br>
+      Studio — <a href="https://kmwebdesign.xyz" target="_blank" rel="noopener">kmwebdesign.xyz</a><br>
+      Business — <a href="https://ravfiastrategic0perations.com" target="_blank" rel="noopener">ravfiastrategic0perations.com</a><br>
+      <span class="mono" style="font-size:11px;letter-spacing:.1em">BUILT ON BUN · TYPESCRIPT SERVER · ZERO DEPENDENCIES · ZERO BLOAT</span>
+    </div>
+  </div>
+  <p class="small" style="margin-top:22px">Photos: Tagum City aerial via Property Report Philippines; Las Vegas via Lenna for Nevada; Philippine construction via Go Asia Technology; Philippine street basketball via Vieclam Philippine; billiards via Marcus Scigliano Photography; painter via Saba Manpower. Designer-desk artwork is an original illustration made for this page.</p>
+</div></footer>
+
+<script>
+(function(){
+  // clock (America/Los_Angeles)
+  function tickClock(){ try{ document.getElementById('clock').textContent = new Intl.DateTimeFormat('en-US',{hour:'2-digit',minute:'2-digit',hour12:true,timeZone:'America/Los_Angeles'}).format(new Date()); }catch(e){} }
+  tickClock(); setInterval(tickClock,30000);
+  // progress
+  var prog=document.getElementById('prog');
+  addEventListener('scroll',function(){ var h=document.documentElement; var p=h.scrollTop/(h.scrollHeight-h.clientHeight||1); prog.style.width=(p*100)+'%'; },{passive:true});
+  // ticker
+  var items=['CONSTRUCTION LABORER','PAINT LABORER','EVENT ORGANIZING','BILLIARDS','BASKETBALL','TROPHIES','TAGUM CITY','MARCH 2022','LAS VEGAS','WEB DESIGN','DIY','CURIOSITY = ENGINE'];
+  var html=items.map(function(t){return '<span>'+t+' <b>◆</b></span>'}).join('');
+  document.getElementById('ticker').innerHTML=html+html;
+  // counters
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(!e.isIntersecting)return; var el=e.target,end=+el.dataset.count,t0=null; function step(ts){ if(!t0)t0=ts; var k=Math.min(1,(ts-t0)/1100); el.textContent=Math.round(end*(0.2+0.8*k)); if(k<1)requestAnimationFrame(step); else el.textContent=end; } requestAnimationFrame(step); io.unobserve(el); })},{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){io.observe(el)});
+  // stars canvas
+  var cv=document.getElementById('stars'),ctx=cv.getContext('2d'),pts=[],reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){ cv.width=cv.offsetWidth; cv.height=cv.offsetHeight; pts=[]; for(var i=0;i<70;i++)pts.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.4+.3,s:Math.random()*.25+.05}); }
+  size(); addEventListener('resize',size);
+  (function draw(){ ctx.clearRect(0,0,cv.width,cv.height); ctx.fillStyle='rgba(242,194,48,.85)'; pts.forEach(function(p){ ctx.globalAlpha=.35+Math.abs(Math.sin(Date.now()/1400*p.s*4))*.5; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,7); ctx.fill(); if(!reduced){p.y+=p.s; if(p.y>cv.height)p.y=0;} }); ctx.globalAlpha=1; if(!reduced)requestAnimationFrame(draw); })();
+
+  // TIMELINE
+  var chapters=[
+    {when:'ROOTS',loc:'TAGUM CITY · MINDANAO',title:'Raised by his grandparents',body:'Kurt grew up poor in Tagum City, Davao del Norte, in a broken family — raised by his grandparents. Money was tight, life was not easy, and nobody was coming to fix it. So he learned early: work, adapt, and figure it out.',tags:['Tagum City','Davao del Norte','Mindanao, PH','Grandparents']},
+    {when:'GRADE 7–10',loc:'PHILIPPINES',title:'School ended. Learning didn\u2019t.',body:'He finished Grade 7 to 10 — and that was it. No high school diploma, no K-12. On paper, the story was supposed to stop there. Instead, his real education happened on job sites, on courts, and later, on a computer he taught himself to master.',tags:['Grade 7–10 only','No K-12','Self-taught']},
+    {when:'THE HANDS ERA',loc:'PHILIPPINES',title:'Construction. Paint. Events.',body:'Construction laborer. Paint laborer. Event organizing. Three different jobs with one lesson in common: show up, work hard, finish clean. Those years built the discipline — and quietly, the design eye — that everything later stands on.',tags:['Construction Laborer','Paint Laborer','Event Organizing']},
+    {when:'GAME TIME',loc:'PHILIPPINES',title:'Trophies on the court & the table',body:'Basketball and billiards weren\u2019t pastimes — they were competition. Kurt played hard at both and brought home a lot of trophies. Sports taught him what work alone can\u2019t: strategy, patience, and performing when it counts.',tags:['Basketball','Billiards','Many trophies']},
+    {when:'MARCH 2022',loc:'PHILIPPINES → USA',title:'The crossing',body:'In March 2022, Kurt moved to the United States. New country, new system, same hustle. He arrived with work ethic, curiosity, and not much else — and started building the American chapter from zero.',tags:['Moved to US · Mar 2022','New start','Las Vegas, NV']},
+    {when:'NOW',loc:'LAS VEGAS · USA',title:'Designer. Founder. Manager.',body:'Today Kurt is a web designer and frontend developer, founder of KM Web Design, and a manager at Ravfia Strategic Operations LLC in Las Vegas. Still studying. Still picking up new skills. Still curious about everything — especially computers and DIY.',tags:['Web Designer','KM Web Design','Ravfia Manager','Always learning']}
+  ];
+  var tabs=document.getElementById('tlTabs');
+  chapters.forEach(function(c,i){ var b=document.createElement('button'); b.className='tl-tab'; b.setAttribute('role','tab'); b.textContent=(i+1)+'. '+c.title.split('.')[0]; b.setAttribute('aria-selected', i===0?'true':'false'); b.addEventListener('click',function(){ selectChapter(i); }); tabs.appendChild(b); });
+  function selectChapter(i){ var c=chapters[i]; document.querySelectorAll('.tl-tab').forEach(function(t,j){t.setAttribute('aria-selected', j===i?'true':'false')}); document.getElementById('tlWhen').textContent=c.when; document.getElementById('tlLoc').textContent=c.loc; document.getElementById('tlTitle').textContent=c.title; document.getElementById('tlBody').textContent=c.body; document.getElementById('tlTags').innerHTML=c.tags.map(function(t){return '<span class="tag">'+t+'</span>'}).join(''); }
+  selectChapter(4);
+
+  // CURIOSITY LAB
+  var topics=[
+    {name:'💻 Computers',title:'Computers — the main obsession',body:'How they work, how to fix them, how to build with them. Computers turned curiosity into a career: first understanding the machine, then the web, then design itself.',level:98,note:'CURIOSITY INDEX · 98 / 100'},
+    {name:'🛠 DIY Stuff',title:'DIY — if it\u2019s broken, open it up',body:'Tools, builds, repairs, experiments. The same hands that mixed concrete and rolled paint now build, mod, and tinker. DIY is where Kurt learns fastest — by doing it wrong once, then right.',level:94,note:'CURIOSITY INDEX · 94 / 100'},
+    {name:'🎨 Web Design',title:'Web design — where the eye meets the code',body:'Paint labor trained the eye. Computers trained the logic. Web design is where both met — and where Kurt became the pro people ask for design advice.',level:96,note:'CURIOSITY INDEX · 96 / 100'},
+    {name:'📚 New Skills',title:'Always studying, always adding skills',body:'No school past Grade 10 meant every new skill was a choice. Kurt keeps choosing: studying, practicing, stacking skill on skill — because stopping was never an option.',level:100,note:'CURIOSITY INDEX · 100 / 100 — NEVER STOPS'},
+    {name:'🏀 Sports IQ',title:'Sports — strategy you can feel',body:'Billiards angles and basketball reads are problem-solving at speed. The trophies say he was good. The habits — patience, angles, commitment — say why he\u2019s good at everything else too.',level:90,note:'CURIOSITY INDEX · 90 / 100'}
+  ];
+  var chips=document.getElementById('chips');
+  topics.forEach(function(t,i){ var b=document.createElement('button'); b.className='chipbtn'; b.textContent=t.name; b.setAttribute('aria-pressed', i===0?'true':'false'); b.addEventListener('click',function(){ selectTopic(i); }); chips.appendChild(b); });
+  function selectTopic(i){ var t=topics[i]; document.querySelectorAll('.chipbtn').forEach(function(c,j){c.setAttribute('aria-pressed', j===i?'true':'false')}); document.getElementById('labTitle').textContent=t.title; document.getElementById('labBody').textContent=t.body; document.getElementById('labNote').textContent=t.note; var m=document.getElementById('labMeter'); m.style.width='0'; setTimeout(function(){m.style.width=t.level+'%'},40); }
+  selectTopic(0);
+})();
+</script>
+</body>
+</html>
