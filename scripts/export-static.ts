@@ -9,13 +9,21 @@ import { cpSync, mkdirSync, rmSync, writeFileSync, readFileSync, readdirSync } f
 import { join, resolve } from "node:path";
 import { renderRoute } from "../src/site/pages.ts";
 import { journey } from "../src/data/journey.ts";
+import { configuredSiteBase, indexedRoutes, robotsText, sitemapXml } from "../src/site/seo.ts";
 
 const root = resolve(import.meta.dir, "..");
 const outDir = join(root, "pages-dist");
 const base = (process.env.BASE_PATH ?? "").replace(/\/+$/, "");
 const cname = process.env.CNAME ?? "";
 
-const ROUTES = ["/", "/story", "/work", "/curiosity", "/now"] as const;
+if (base && !/^\/[a-zA-Z0-9/_-]+$/.test(base)) throw new Error("BASE_PATH must be a root-relative path without a trailing slash");
+if (base && cname) throw new Error("Do not set CNAME for a project Pages base path");
+const siteBase = configuredSiteBase();
+// configuredSiteBase has already parsed and validated this HTTPS URL.
+const authority = siteBase?.slice("https://".length).split("/")[0] ?? "";
+const sitePath = siteBase?.slice("https://".length + authority.length) ?? "";
+if (siteBase && sitePath !== base) throw new Error("SITE_URL path must match BASE_PATH");
+if (siteBase && cname && authority !== cname) throw new Error("SITE_URL host must match CNAME");
 
 function rewriteUrls(html: string): string {
   if (!base) return html;
@@ -47,7 +55,7 @@ for (const file of readdirSync(outDir)) {
 }
 
 // Pages
-for (const route of ROUTES) {
+for (const route of indexedRoutes) {
   const page = renderRoute(route);
   if (page.status !== 200) throw new Error(`Route ${route} rendered with status ${page.status}`);
   const dir = route === "/" ? outDir : join(outDir, route.slice(1));
@@ -63,6 +71,12 @@ writeFileSync(join(outDir, "404.html"), rewriteUrls(notFound.html));
 // The journey data, as a static file (the /api/journey endpoint needs the Bun server)
 mkdirSync(join(outDir, "api"), { recursive: true });
 writeFileSync(join(outDir, "api", "journey.json"), JSON.stringify(journey, null, 2));
+
+// Search discovery requires a verified, explicitly configured public origin.
+writeFileSync(join(outDir, "robots.txt"), robotsText());
+const sitemap = sitemapXml();
+if (sitemap) writeFileSync(join(outDir, "sitemap.xml"), sitemap);
+else console.warn("SITE_URL is unset; canonical URLs and sitemap.xml were omitted.");
 
 // GitHub Pages: skip Jekyll processing; set custom domain when provided
 writeFileSync(join(outDir, ".nojekyll"), "");

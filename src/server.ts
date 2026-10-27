@@ -2,6 +2,7 @@
 import { extname, resolve, sep } from "node:path";
 import { journey } from "./data/journey.ts";
 import { renderRoute } from "./site/pages.ts";
+import { robotsText, sitemapXml } from "./site/seo.ts";
 
 const PORT = Number(process.env.PORT ?? 3000);
 const HOST = process.env.HOST ?? "127.0.0.1";
@@ -15,6 +16,7 @@ const MIME: Record<string, string> = {
   ".png": "image/png",
   ".webp": "image/webp",
   ".svg": "image/svg+xml",
+  ".webmanifest": "application/manifest+json; charset=utf-8",
   ".ico": "image/x-icon",
 };
 
@@ -65,8 +67,15 @@ const server = Bun.serve({
     }
     if (url.pathname === "/health") return json({ ok: true, runtime: "bun", version: Bun.version });
     if (url.pathname === "/api/journey") return json(journey);
+    if (url.pathname === "/robots.txt") {
+      return new Response(robotsText(), { headers: { "content-type": "text/plain; charset=utf-8", ...SECURITY_HEADERS } });
+    }
+    if (url.pathname === "/sitemap.xml") {
+      const xml = sitemapXml();
+      return xml ? new Response(xml, { headers: { "content-type": "application/xml; charset=utf-8", ...SECURITY_HEADERS } }) : json({ error: "Site URL not configured" }, 404);
+    }
 
-    if (url.pathname === "/style.css" || url.pathname === "/pages.css" || url.pathname === "/home.css" || url.pathname === "/main.js" || url.pathname === "/favicon.svg" || url.pathname.startsWith("/assets/")) {
+    if (["/style.css", "/pages.css", "/home.css", "/main.js", "/favicon.svg", "/favicon-32.png", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/social-card.png", "/site.webmanifest"].includes(url.pathname) || url.pathname.startsWith("/assets/")) {
       return serveStatic(url.pathname);
     }
 

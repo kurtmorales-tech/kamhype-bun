@@ -22,7 +22,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
       - name: Install Bun
         # npm install instead of the oven setup action: that action failed
@@ -37,17 +39,20 @@ jobs:
         # custom domain configured in Settings -> Pages and in DNS.
         env:
           BASE_PATH: ""
-          CNAME: "kmwebdesign.xyz"
+          CNAME: "kurtmorales.kmwebdesign.xyz"
+          # Set this repo variable only after confirming the public Kamhype URL.
+          SITE_URL: ${{ vars.KAMHYPE_SITE_URL }}
         run: bun run build:pages
 
       - name: Set up Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: >-
+          actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
         with:
           path: pages-dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

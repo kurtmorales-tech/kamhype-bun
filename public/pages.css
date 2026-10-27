@@ -160,8 +160,8 @@ body:has(.chapter-hero--story) .mobile-menu nav a:last-child,body:has(.chapter-h
 .now h2{font:400 clamp(3.3rem,6vw,7rem)/1 var(--body);letter-spacing:-.04em;text-transform:none;margin:0}
 .now h2 em{font-style:normal;color:var(--paper)}
 .now-head p{max-width:26rem;margin:0;color:#c5d0c6;font-size:1.07rem;line-height:1.7}
-.now-visual{position:relative;margin:0;aspect-ratio:2.32/1;overflow:hidden;background:#1b2824}
-.now-visual img{width:100%;height:100%;object-fit:cover}
+.now-visual{position:relative;margin:0;aspect-ratio:auto;overflow:hidden;background:#1b2824}
+.now-visual img{display:block;width:100%;height:auto}
 .now-visual figcaption{position:absolute;bottom:1rem;left:1.3rem;font:500 .7rem/1.4 var(--mono);color:#fff;background:rgba(10,20,22,.9);padding:.6rem .7rem}
 .now-info{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,6vw,7rem);padding:clamp(3rem,6vw,6rem) 0 0}
 .info-kicker{font:500 .74rem/1.5 var(--mono);color:var(--lime)}
@@ -257,7 +257,6 @@ body:has(.chapter-hero--story) .chapter-pager :focus-visible,body:has(.chapter-h
   .curiosity-notes{padding:0}
   .curiosity summary{min-height:78px;font-size:clamp(1.4rem,6vw,2.3rem)}
   .curiosity details p{padding-left:2rem}
-  .now-visual{aspect-ratio:1.15}
   .now-visual figcaption{font-size:.58rem}
   .now-info h3{font-size:clamp(3.3rem,12vw,5rem)}
   .closing h2{font-size:clamp(3.4rem,13vw,6rem)}

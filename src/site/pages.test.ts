@@ -106,6 +106,16 @@ describe("multi-page renderer", () => {
     }
   });
 
+  test("rendered local images exist in public assets", () => {
+    const html = routes.map((route) => renderRoute(route).html).join("");
+    const imagePaths = [...html.matchAll(/<img\b[^>]*?\ssrc="(\/assets\/[^\"]+)"/g)].map((match) => match[1]);
+    expect(imagePaths.length).toBeGreaterThan(0);
+    for (const src of imagePaths) {
+      expect(existsSync(resolve(import.meta.dir, "../../public", src.slice(1)))).toBe(true);
+    }
+    expect(html).not.toContain("/assets/designer-desk.jpg");
+  });
+
   test("home presents the current learning focus and honest feedback state", () => {
     const html = renderRoute("/").html;
     expect(html).toContain('href="/home.css"');

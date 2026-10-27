@@ -41,7 +41,15 @@ There are **zero runtime packages**. TypeScript and Bun types are dev-only. Befo
 
 ## GitHub Pages
 
-GitHub Pages cannot run the Bun server, so `.github/workflows/pages.yml` exports a static copy on every push to `main`: `scripts/export-static.ts` renders all five routes with the same `renderRoute()` the server uses, copies `public/`, and writes `404.html`, `.nojekyll`, `api/journey.json`, and the `CNAME` for the custom domain (`kmwebdesign.xyz`, set in the workflow). For a project Pages URL instead of a custom domain, set `BASE_PATH=/kamhype-bun` and drop the `CNAME` in the workflow. The Bun server (`bun run start`) remains the full version, including `/api/journey` and `/health`.
+GitHub Pages cannot run the Bun server, so `.github/workflows/pages.yml` exports a static copy on every push to `main`: `scripts/export-static.ts` renders all five routes with the same `renderRoute()` the server uses, copies `public/`, and writes `404.html`, `.nojekyll`, `api/journey.json`, and the `CNAME` for the personal-site subdomain (`kurtmorales.kmwebdesign.xyz`, set in the workflow). For a project Pages URL instead of a custom domain, set `BASE_PATH=/kamhype-bun` and drop the `CNAME` in the workflow. For Actions-based Pages deployments, GitHub ignores the artifact's `CNAME` file: set the same hostname in repository Settings → Pages; the export uses `CNAME` to validate its own URLs. The Bun server (`bun run start`) remains the full version, including `/api/journey` and `/health`.
+
+## Search discovery
+
+The five pages have distinct titles, descriptions, social metadata and honest WebPage/Person structured data. The site has SVG, PNG and Apple touch icons, a manifest and a locally generated social card. The export writes `robots.txt` and, only when `SITE_URL` is set, `sitemap.xml` with the five public routes. The Bun server serves the same discovery responses. On a GitHub Pages project subpath, `robots.txt` does not live at the host root and cannot set crawler policy for the host; submit the sitemap directly or use a verified custom domain.
+
+Set `SITE_URL` to the **confirmed public HTTPS URL of this Kamhype site**, including any project base path, before publishing canonical URLs or a sitemap (for GitHub Actions, set the repository variable `KAMHYPE_SITE_URL`). Do not infer the address from a request host or the current `CNAME`: the apex `kmwebdesign.xyz` is linked here as a separate studio and is not the personal site's canonical address. For example, after verifying a domain and its DNS: `SITE_URL=https://your-confirmed-domain.example CNAME=your-confirmed-domain.example bun run build:pages`. Without `SITE_URL`, the export intentionally omits absolute canonicals and the sitemap instead of advertising an unverified domain. `BASE_PATH` and `SITE_URL` must agree.
+
+Once a verified deployment is reachable, submit its sitemap in Google Search Console and Bing Webmaster Tools. Other crawlers can discover it through `robots.txt` and links; submission does not guarantee indexing. Genuine external backlinks require links from independently controlled, relevant sites, not generated markup or link spam.
 
 ## Verify
 
