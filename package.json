@@ -1,5 +1,5 @@
 {
-  "description": "Kurt Anthony Morales (Kamhype) — US Journey & Career. Futuristic personal site built on Bun + TypeScript, zero dependencies.",
+  "description": "Kurt Anthony Morales (Kamhype) \u2014 US Journey & Career. Futuristic personal site built on Bun + TypeScript, zero dependencies.",
   "engines": {
     "bun": ">=1.1"
   },
@@ -10,7 +10,8 @@
     "check": "bunx tsc --noEmit",
     "test": "bun test",
     "dev": "bun --watch src/server.ts",
-    "start": "bun src/server.ts"
+    "start": "bun src/server.ts",
+    "build:pages": "bun scripts/export-static.ts"
   },
   "type": "module",
   "version": "1.0.0",

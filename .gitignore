@@ -1,6 +1,7 @@
 node_modules/
 .firecrawl/
 dist/
+pages-dist/
 .env
 *.log
 .DS_Store

@@ -39,6 +39,10 @@ Unknown pages get a helpful HTML 404 instead of a homepage fallback. `/story/` a
 
 There are **zero runtime packages**. TypeScript and Bun types are dev-only. Before public deployment, confirm redistribution rights for the repository's existing images.
 
+## GitHub Pages
+
+GitHub Pages cannot run the Bun server, so `.github/workflows/pages.yml` exports a static copy on every push to `main`: `scripts/export-static.ts` renders all five routes with the same `renderRoute()` the server uses, copies `public/`, and writes `404.html`, `.nojekyll`, `api/journey.json`, and the `CNAME` for the custom domain (`kmwebdesign.xyz`, set in the workflow). For a project Pages URL instead of a custom domain, set `BASE_PATH=/kamhype-bun` and drop the `CNAME` in the workflow. The Bun server (`bun run start`) remains the full version, including `/api/journey` and `/health`.
+
 ## Verify
 
 ```sh
