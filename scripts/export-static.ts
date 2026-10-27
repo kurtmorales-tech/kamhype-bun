@@ -5,7 +5,7 @@
 // With a custom domain at the root, leave BASE_PATH empty.
 //
 // Usage: BASE_PATH=/kamhype-bun CNAME=example.com bun scripts/export-static.ts
-import { cpSync, mkdirSync, rmSync, writeFileSync, readFileSync, readdirSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { renderRoute } from "../src/site/pages.ts";
 import { journey } from "../src/data/journey.ts";
@@ -47,6 +47,15 @@ mkdirSync(outDir, { recursive: true });
 
 // Static assets + stylesheets/scripts from public/
 cpSync(join(root, "public"), outDir, { recursive: true });
+const previewsDir = join(outDir, "previews");
+if (base && existsSync(previewsDir)) {
+  for (const file of readdirSync(previewsDir)) {
+    if (file.endsWith(".html")) {
+      const path = join(previewsDir, file);
+      writeFileSync(path, rewriteUrls(readFileSync(path, "utf8")));
+    }
+  }
+}
 for (const file of readdirSync(outDir)) {
   if (file.endsWith(".css")) {
     const path = join(outDir, file);

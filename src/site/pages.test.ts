@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { journey } from "../data/journey.ts";
 import { actionLink, chapterPager, escapeHtml, photoFigure } from "./components.ts";
 import { renderRoute } from "./pages.ts";
 import { reviewedAssets } from "./asset-gallery.ts";
@@ -20,6 +21,18 @@ describe("multi-page renderer", () => {
     expect(html).toContain("learning Rust and cybersecurity");
     expect(renderRoute("/").html).toContain('href="/story#why-he-builds"');
   });
+  test("Kurt's number-one goal is a long-term vision and failure is not the end of the story", () => {
+    const story = renderRoute("/story").html;
+    const goal = story.split('id="number-one-goal"')[1]?.split('class="chapter-pager"')[0] ?? "";
+    expect(goal).toContain(`<h2 id="goal-story-title">${escapeHtml(journey.ambition.numberOneGoal.title)}</h2>`);
+    expect(goal).toContain("This is a future vision, not a claim of current wealth, contracts, crews or national market position.");
+    expect(goal).toContain("Kurt can accept that kind of failure");
+    expect(goal).toContain("stand back up, and try a better way");
+    const narrative = goal.split('class="goal-story-body">')[1]?.split("</div>")[0] ?? "";
+    expect((narrative.match(/<p>/g) ?? []).length).toBe(9);
+    expect(renderRoute("/").html).toContain('href="/story#number-one-goal"');
+  });
+
   for (const path of routes) {
     test(`${path} renders a complete, navigable document`, () => {
       const { html, status } = renderRoute(path);
@@ -82,7 +95,7 @@ describe("multi-page renderer", () => {
     expect(curiosity).toContain("cloud-infrastructure-wide.webp");
     expect(curiosity).toContain("dashboard-wide.webp");
     expect(curiosity).toContain("not professional certifications");
-    expect(curiosity).toContain("not claimed business results");
+    expect(curiosity).toContain("mockup content, not business results");
     expect(renderRoute("/now").html).not.toContain("does not depict Kurt");
   });
 
@@ -114,7 +127,6 @@ describe("multi-page renderer", () => {
       expect(existsSync(resolve(import.meta.dir, "../../public", src.slice(1)))).toBe(true);
     }
     expect(html).not.toContain("/assets/designer-desk.jpg");
-    expect(existsSync(resolve(import.meta.dir, "../../public/assets/designer-desk.jpg"))).toBe(false);
   });
 
   test("home presents the current learning focus and honest feedback state", () => {

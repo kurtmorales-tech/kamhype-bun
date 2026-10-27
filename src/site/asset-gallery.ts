@@ -3,10 +3,10 @@ import { escapeHtml } from "./components.ts";
 type Asset = { id: string; file: string; title: string; description: string; width: number; height: number };
 const asset = (id: string, file: string, title: string, description: string, width: number, height: number): Asset => ({ id, file, title, description, width, height });
 
-// Placement is based on visual review, not filenames alone. Screenshots establish
-// what a design looks like, not authorship, client relationships or business results.
+// Placement is based on visual review, not filenames alone. The owner supplied
+// authorship instructions; screenshots do not establish client work or results.
 export const portraits = [
-  asset("portrait-casual", "me2.png", "A personal introduction", "Portrait in a cream cardigan against a dark studio-style background.", 1024, 1536),
+  asset("portrait-casual", "me2.png", "A personal introduction", "Kurt in a cream cardigan over a navy T-shirt, hands in his pockets, shown as a cutout.", 1024, 1536),
   asset("portrait-formal", "me.png", "The next chapter", "Portrait in a gray suit and pink shirt against a dark studio-style background.", 1024, 1536),
 ];
 export const printDesigns = [
@@ -31,8 +31,8 @@ export const experiments = [
   asset("secure-pass", "darkmode.jpeg", "Password-generator interface", "A dark utility interface with password settings and a strength indicator. This is a design screenshot, not a functioning tool here.", 1427, 898),
   asset("tube-ideas", "tubeideas.webp", "YouTube idea interface", "A dark idea-generation interface with controls for shaping a video concept.", 1200, 833),
   asset("viral-predict", "screenshot-2026-05-12_14-39-12.png", "Viral Predict / interface study", "A light, orange-accented concept with a video-input field. No predictive capability is claimed by displaying this screenshot.", 2934, 1544),
-  asset("starter-landing", "landing-page.png", "Starter-template landing page", "A multi-tenant Next.js starter-template screen; presented as interface reference, not an original product claim.", 2676, 1636),
-  asset("dashboard", "dashboard-overview.png", "Dashboard / overview", "A template-style dashboard with chart, navigation and example metrics. The displayed revenue and activity are not claimed business results.", 2422, 1526),
+  asset("starter-landing", "landing-page.png", "Starter-template landing page", "Kurt's multi-tenant Next.js starter-template landing-page design with a light hero and paired actions.", 2676, 1636),
+  asset("dashboard", "dashboard-overview.png", "Dashboard / overview", "Kurt's dashboard design with chart, navigation and example metrics. The displayed revenue and activity are mockup content, not business results.", 2422, 1526),
   asset("account-settings", "account-settings.png", "Dashboard / account settings", "A companion settings screen with profile and team-management controls and sample account data.", 1398, 1072),
   asset("team-switcher", "team-switcher.png", "Dashboard / team switching", "A close-up of the team selector and its account-navigation states.", 874, 554),
   asset("ravfia-coin", "ravfiacoin.png", "Ravfia Coin / graphic", "A gold-and-violet promotional graphic. Shown only as visual design, not a token endorsement or verification of the claims in the artwork.", 1254, 1254),
@@ -58,7 +58,7 @@ export function assetImage(item: Asset): string {
 }
 
 export function assetGallery(id: string, eyebrow: string, title: string, introduction: string, items: readonly Asset[], compact = false): string {
-  return `<section class="asset-gallery${compact ? " asset-gallery--badges" : ""}" id="${id}" aria-labelledby="${id}-title"><div class="container"><header class="asset-gallery-heading"><p class="info-kicker">${escapeHtml(eyebrow)}</p><h2 id="${id}-title">${escapeHtml(title)}</h2><p>${escapeHtml(introduction)}</p></header><div class="asset-grid">${items.map((item) => `<figure class="asset-entry"><a class="asset-preview" href="/assets/${encodeURIComponent(item.file)}" aria-label="View full-size image: ${escapeHtml(item.title)}">${assetImage(item)}</a><figcaption><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><a class="asset-original" href="/assets/${encodeURIComponent(item.file)}">View full-size image <span aria-hidden="true">↗</span></a></figcaption></figure>`).join("")}</div></div></section>`;
+  return `<section class="asset-gallery${compact ? " asset-gallery--badges" : ""}" id="${id}" aria-labelledby="${id}-title"><div class="container"><header class="asset-gallery-heading"><p class="info-kicker">${escapeHtml(eyebrow)}</p><h2 id="${id}-title">${escapeHtml(title)}</h2><p>${escapeHtml(introduction)}</p><a class="asset-original" href="/previews/index.html">Browse all portfolio previews <span aria-hidden="true">↗</span></a></header><div class="asset-grid">${items.map((item) => `<figure class="asset-entry"><a class="asset-preview" href="/previews/${encodeURIComponent(item.id)}.html" aria-label="View preview: ${escapeHtml(item.title)}">${assetImage(item)}</a><figcaption><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><a class="asset-original" href="/assets/${encodeURIComponent(item.file)}">View full-size image <span aria-hidden="true">↗</span></a></figcaption></figure>`).join("")}</div></div></section>`;
 }
 
 export function portraitSection(which: 0 | 1): string {

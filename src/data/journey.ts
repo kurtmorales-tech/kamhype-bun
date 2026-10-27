@@ -35,6 +35,10 @@ export const journey = {
   ambition: {
     title: "A different beginning for the next generation.",
     summary: "Kurt wants to build businesses, retire early and travel—but the deeper goal is to give his future child a more secure beginning than the one he had.",
+    numberOneGoal: {
+      title: "His goal: build wealth and America's biggest parking lot line striping company.",
+      status: "This is a future vision, not a claim of current wealth, contracts, crews or national market position.",
+    },
     support: "Kurt describes his entrepreneurial ambitions as a path he has had to believe in without the support he hoped for. Wanting to build a business, retire early and travel can feel lonely when the people around him do not share that vision. He is choosing to keep learning and working toward it anyway.",
     family: "His ambition is personal. He does not want his future child to grow up with the hardship and uncertainty he experienced. He wants to offer stability, room to learn and the freedom to make choices without survival deciding everything first. He cannot rewrite his own childhood, but he wants to help shape a different one for the next generation.",
     freedom: "For Kurt, entrepreneurship is a way to work toward that freedom: to own what he builds, have more control over his time, retire early and see more of the world. Travel is part of the dream, but so is having time to be present for the family he hopes to build.",

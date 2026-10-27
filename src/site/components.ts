@@ -84,7 +84,7 @@ function navigation(current: PagePath | null, mobile: boolean): string {
 }
 
 function siteHeader(current: PagePath | null): string {
-  return `<header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Kamhype — home"><span class="brand-symbol" aria-hidden="true">K<span>↗</span></span><span class="brand-name">KAMHYPE<span class="brand-period">.</span></span></a>${navigation(current, false)}${navigation(current, true)}<a class="header-link" href="/now#connect">Let's connect <span aria-hidden="true">↗</span></a></div></header>`;
+  return `<header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-symbol" aria-hidden="true">K<span>↗</span></span><span class="brand-name">KAMHYPE<span class="brand-period">.</span></span></a>${navigation(current, false)}${navigation(current, true)}<a class="header-link" href="/now#connect">Let's connect <span aria-hidden="true">↗</span></a></div></header>`;
 }
 
 function siteFooter(): string {

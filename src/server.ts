@@ -1,24 +1,13 @@
 // Bun server: five server-rendered pages, static assets and the journey JSON API.
-import { extname, resolve, sep } from "node:path";
+import { resolve, sep } from "node:path";
 import { journey } from "./data/journey.ts";
 import { renderRoute } from "./site/pages.ts";
 import { robotsText, sitemapXml } from "./site/seo.ts";
+import { downloadAssetHtml, staticContentType } from "./site/static-serving.ts";
 
 const PORT = Number(process.env.PORT ?? 3000);
 const HOST = process.env.HOST ?? "127.0.0.1";
 const PUBLIC_DIR = resolve(import.meta.dir, "..", "public");
-
-const MIME: Record<string, string> = {
-  ".css": "text/css; charset=utf-8",
-  ".js": "text/javascript; charset=utf-8",
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".png": "image/png",
-  ".webp": "image/webp",
-  ".svg": "image/svg+xml",
-  ".webmanifest": "application/manifest+json; charset=utf-8",
-  ".ico": "image/x-icon",
-};
 
 const SECURITY_HEADERS = {
   "x-content-type-options": "nosniff",
@@ -41,10 +30,10 @@ async function serveStatic(pathname: string): Promise<Response> {
   const file = Bun.file(filePath);
   if (!(await file.exists())) return json({ error: "Not found" }, 404);
 
-  const extension = extname(filePath).toLowerCase();
   return new Response(file, {
     headers: {
-      "content-type": MIME[extension] ?? "application/octet-stream",
+      "content-type": staticContentType(pathname),
+      ...(downloadAssetHtml(pathname) ? { "content-disposition": "attachment" } : {}),
       "cache-control": pathname.startsWith("/assets/") ? "public, max-age=86400" : "public, max-age=300",
       ...SECURITY_HEADERS,
     },
@@ -74,6 +63,9 @@ const server = Bun.serve({
       const xml = sitemapXml();
       return xml ? new Response(xml, { headers: { "content-type": "application/xml; charset=utf-8", ...SECURITY_HEADERS } }) : json({ error: "Site URL not configured" }, 404);
     }
+
+    if (url.pathname === "/previews" || url.pathname === "/previews/") return serveStatic("/previews/index.html");
+    if (/^\/previews\/[a-z0-9-]+\.html$/.test(url.pathname)) return serveStatic(url.pathname);
 
     if (["/style.css", "/pages.css", "/home.css", "/main.js", "/favicon.svg", "/favicon-32.png", "/apple-touch-icon.png", "/icon-192.png", "/icon-512.png", "/social-card.png", "/site.webmanifest"].includes(url.pathname) || url.pathname.startsWith("/assets/")) {
       return serveStatic(url.pathname);
