@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viral Predict / interface study — demo | Kurt Anthony Morales</title>
+<style>.demobar{position:sticky;top:0;z-index:50;display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;padding:9px 14px;background:#111;color:#f5f5f5;font:13px/1.4 system-ui,sans-serif}.demobar a{color:#f2c230;text-decoration:underline;min-height:24px;display:inline-flex;align-items:center}.demofoot{padding:22px 16px;text-align:center;font:12.5px/1.5 system-ui,sans-serif;opacity:.75}
+
+*{margin:0;box-sizing:border-box}body{background:#fff8f2;color:#241a12;font-family:Inter,system-ui,sans-serif}
+.wrap{max-width:620px;margin:0 auto;padding:32px 20px 10px}
+.kick{font-size:12.5px;font-weight:800;letter-spacing:2px;color:#e86a17}
+h1{font-size:34px;margin-top:8px}
+.sub{color:#7a6a58;font-size:15px;line-height:1.55;margin-top:10px}
+label{display:block;font-weight:600;font-size:14px;margin-top:22px}
+input,select{width:100%;margin-top:7px;padding:12px;border:1px solid #ecd9c8;border-radius:9px;font-size:15.5px;background:#fff;min-height:44px}
+.btn{margin-top:18px;width:100%;padding:13px;border:0;border-radius:9px;background:#e86a17;color:#fff;font-weight:800;font-size:15.5px;cursor:pointer;min-height:48px}
+.result{display:none;margin-top:20px;background:#fff;border:1px solid #ecd9c8;border-radius:12px;padding:18px}
+.result .score{font-size:30px;font-weight:800;color:#e86a17}
+.result p{font-size:14px;line-height:1.55;color:#7a6a58;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="demobar"><span>Live demo — a working recreation of this design by Kurt Anthony Morales.</span><a href="/demos/index.html">All demos</a><a href="/previews/index.html">Screenshot previews</a><a href="/">Main site</a></div>
+
+<div class="wrap">
+<div class="kick">INTERFACE STUDY — LIVE DEMO</div>
+<h1>VIRAL PREDICT</h1>
+<p class="sub">The concept page rebuilt as a working form. The score below is placeholder demo logic — this tool does not predict anything, and the original design never claimed it could.</p>
+<label for="niche">Video niche</label><input id="niche" type="text" placeholder="e.g. small business, fitness, cooking">
+<label for="title">Working title</label><input id="title" type="text" placeholder="Your draft title">
+<button class="btn" id="go" type="button">Analyze (demo)</button>
+<div class="result" id="res"><div class="score" id="score"></div><p id="why"></p></div>
+</div>
+
+<footer class="demofoot">© Kurt Anthony Morales — KM Web Design. All rights reserved.</footer>
+<script>
+document.getElementById('go').addEventListener('click',function(){
+ var t=document.getElementById('title').value.trim(),n=document.getElementById('niche').value.trim();
+ var res=document.getElementById('res');res.style.display='block';
+ if(!t){document.getElementById('score').textContent='—';document.getElementById('why').textContent='Add a working title first. Even a demo needs something to look at.';return;}
+ var s=40+(t.length*3)%45+(/(\d|how|why|secret|mistake)/i.test(t)?8:0);if(s>97)s=97;
+ document.getElementById('score').textContent=s+'/100 (demo score)';
+ document.getElementById('why').textContent='Demo feedback for "'+t.replace(/</g,'')+'"'+(n?' in '+n.replace(/</g,''):'')+': titles with a number or a clear promise tend to read stronger. This is placeholder logic for the interface demo, not a prediction.';
+});
+</script>
+</body>
+</html>

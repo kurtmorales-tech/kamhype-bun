@@ -16,6 +16,31 @@ Source of truth for items, titles and descriptions: `src/site/asset-gallery.ts`.
 5. When done, start the Bun dev server, open every preview URL, and confirm each one
    returns 200 with its image loading. Report the full list of URLs.
 
+## Individual website demos — REQUIRED, and different from previews
+
+A preview shows a screenshot of a design. A demo is the design rebuilt as a real,
+working web page. Kurt asked for demos; a screenshot page does NOT count as a demo.
+
+1. For every item in the Websites and Experiments/interface sections (including
+   code-only website designs), ALSO build `public/demos/<id>.html`: a live HTML
+   page that recreates that design — real layout, real text, real buttons.
+2. Interface tools must actually work in the browser: the password generator
+   generates, the team switcher switches, the idea engine generates. Keep demo
+   scoring/feedback clearly labelled as demo logic; never present it as a real
+   service, a real booking, or a real result.
+3. Every demo carries a top bar ("Live demo — a working recreation of this design
+   by Kurt Anthony Morales") with links to `/demos/index.html`, the previews
+   index, and the main site, plus the ownership footer from the Ownership section.
+4. Build `public/demos/index.html` listing every demo with a one-line description.
+5. Reference images by absolute path like the previews do; never re-encode them.
+6. Verify every demo returns 200 and renders before reporting done.
+
+Demos already built (2026-10-27) for: km-agency, km-freelance, restaurant-studio,
+manila-bbq, manila-food, ravfia-operations, ravfia-striping, bin-wash-web,
+portfolio-dark, portfolio-orange, starter-landing, dashboard, account-settings,
+team-switcher, secure-pass, tube-ideas, viral-predict, km-immersive-3d.
+Maintain these; do not replace them with screenshot pages.
+
 ## Page structure (every preview file)
 
 - Header: item title, section name, and the item's exact description from

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KM Web Design / agency — demo | Kurt Anthony Morales</title>
+<style>.demobar{position:sticky;top:0;z-index:50;display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;padding:9px 14px;background:#111;color:#f5f5f5;font:13px/1.4 system-ui,sans-serif}.demobar a{color:#f2c230;text-decoration:underline;min-height:24px;display:inline-flex;align-items:center}.demofoot{padding:22px 16px;text-align:center;font:12.5px/1.5 system-ui,sans-serif;opacity:.75}
+
+*{margin:0;box-sizing:border-box}body{background:#0b1026;color:#eef0ff;font-family:Inter,system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 10px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:10px 0 34px}
+.logo{font-weight:800;letter-spacing:.4px}.logo span{color:#8b7bff}
+nav .links{display:flex;gap:22px;font-size:14px;color:#b9bce0}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:start}
+@media(max-width:820px){.hero{grid-template-columns:1fr}}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.04;font-weight:800}
+h1 em{font-style:normal;color:#8b7bff}
+.sub{margin-top:16px;color:#b9bce0;font-size:17px;line-height:1.55;max-width:52ch}
+.panel{background:#141a3d;border:1px solid #2a3163;border-radius:14px;padding:22px}
+.panel h2{font-size:18px;margin-bottom:6px}.panel p{color:#b9bce0;font-size:14px;line-height:1.5}
+.panel label{display:block;margin-top:14px;font-size:13px;color:#dfe2ff}
+.panel input{width:100%;margin-top:6px;padding:11px 12px;border-radius:9px;border:1px solid #39427c;background:#0d1233;color:#fff;font-size:15px}
+.btn{margin-top:16px;width:100%;padding:12px;border:0;border-radius:9px;background:#6c5cff;color:#fff;font-weight:700;font-size:15px;cursor:pointer;min-height:44px}
+.score{margin-top:16px;display:none;background:#0d1233;border:1px dashed #39427c;border-radius:9px;padding:12px;font-size:14px;line-height:1.55}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:38px 0 8px}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.card{background:#10173a;border:1px solid #232a58;border-radius:12px;padding:18px}
+.card h3{font-size:16px;margin-bottom:8px}.card p{color:#b9bce0;font-size:14px;line-height:1.55}
+</style>
+</head>
+<body>
+<div class="demobar"><span>Live demo — a working recreation of this design by Kurt Anthony Morales.</span><a href="/demos/index.html">All demos</a><a href="/previews/index.html">Screenshot previews</a><a href="/">Main site</a></div>
+
+<div class="wrap">
+<nav><div class="logo">KM <span>WEB DESIGN</span></div><div class="links"><span>Work</span><span>Services</span><span>Process</span><span>Contact</span></div></nav>
+<div class="hero">
+<div>
+<h1>We Build Digital <em>Empires</em> That Scale.</h1>
+<p class="sub">A homepage direction for KM Web Design: a dark typographic hero, a clear offer, and an audit panel that turns visitors into leads.</p>
+</div>
+<aside class="panel" aria-label="AI Strategy Audit demo">
+<h2>AI Strategy Audit</h2>
+<p>Answer one question and this demo panel scores your site on the spot. Demo logic only — not a real audit.</p>
+<label for="site">Your website</label>
+<input id="site" type="text" inputmode="url" placeholder="yoursite.com">
+<label for="goal">Main goal</label>
+<input id="goal" type="text" placeholder="More calls, more bookings, more sales">
+<button class="btn" id="run" type="button">Run the demo audit</button>
+<div class="score" id="score" role="status"></div>
+</aside>
+</div>
+<div class="cards">
+<div class="card"><h3>Strategy first</h3><p>The page leads with the business result, not the toolset.</p></div>
+<div class="card"><h3>Built to convert</h3><p>One clear action on every screen. No dead-end sections.</p></div>
+<div class="card"><h3>Fast by default</h3><p>Light pages, lean code, and nothing the visitor has to wait on.</p></div>
+</div>
+</div>
+
+<footer class="demofoot">© Kurt Anthony Morales — KM Web Design. All rights reserved.</footer>
+<script>
+document.getElementById('run').addEventListener('click',function(){
+ var s=document.getElementById('site').value.trim(),g=document.getElementById('goal').value.trim();
+ var box=document.getElementById('score');
+ if(!s){box.style.display='block';box.textContent='Type a website first — even a demo needs something to score.';return;}
+ var n=62+(s.length*7)%29;
+ box.style.display='block';
+ box.innerHTML='<strong>Demo score for '+s.replace(/</g,'')+': '+n+'/100.</strong><br>First fix this demo would flag: one clear next step for "'+(g?g.replace(/</g,''):'your main goal')+'" above the fold.';
+});
+</script>
+</body>
+</html>

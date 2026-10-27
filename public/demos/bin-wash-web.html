@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bin wash / website — demo | Kurt Anthony Morales</title>
+<style>.demobar{position:sticky;top:0;z-index:50;display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;padding:9px 14px;background:#111;color:#f5f5f5;font:13px/1.4 system-ui,sans-serif}.demobar a{color:#f2c230;text-decoration:underline;min-height:24px;display:inline-flex;align-items:center}.demofoot{padding:22px 16px;text-align:center;font:12.5px/1.5 system-ui,sans-serif;opacity:.75}
+
+*{margin:0;box-sizing:border-box}body{background:#0a1a24;color:#eaf6ef;font-family:Inter,system-ui,sans-serif}
+.wrap{max-width:1020px;margin:0 auto;padding:28px 20px 10px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:10px 0 36px}
+.logo{font-weight:800}.logo span{color:#43c465}
+.links{display:flex;gap:22px;font-size:14px;color:#9db8ab}
+h1{font-size:clamp(34px,5.2vw,54px);line-height:1.1}
+h1 em{font-style:normal;color:#43c465}
+.sub{margin-top:14px;color:#9db8ab;font-size:17px;line-height:1.55;max-width:56ch}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:34px 0 12px}
+@media(max-width:820px){.cards{grid-template-columns:1fr}}
+.card{background:#0e2836;border:1px solid #1b4258;border-radius:12px;padding:20px}
+.card h3{font-size:16.5px;margin-bottom:8px}.card p{font-size:14.5px;line-height:1.55;color:#9db8ab}
+.panel{background:#0e2836;border:1px solid #1b4258;border-radius:12px;padding:20px;margin-bottom:10px}
+.btn{margin-top:6px;padding:12px 18px;border:0;border-radius:9px;background:#43c465;color:#06230f;font-weight:800;font-size:15px;cursor:pointer;min-height:44px}
+.note{margin-top:12px;font-size:14px;color:#cfe8d6;display:none}
+</style>
+</head>
+<body>
+<div class="demobar"><span>Live demo — a working recreation of this design by Kurt Anthony Morales.</span><a href="/demos/index.html">All demos</a><a href="/previews/index.html">Screenshot previews</a><a href="/">Main site</a></div>
+
+<div class="wrap">
+<nav><div class="logo">ODOR-FREE <span>RAVFIA</span></div><div class="links"><span>Services</span><span>Plans</span><span>Book</span></div></nav>
+<h1>Clean Bins. <em>Healthier Home.</em></h1>
+<p class="sub">A dark service-site treatment that carries the cleaning identity into a booking-oriented page.</p>
+<div class="cards">
+<div class="card"><h3>Residential bin cleaning</h3><p>Trash and recycle bins washed, sanitized, and deodorized at the curb.</p></div>
+<div class="card"><h3>Recurring monthly plans</h3><p>Set it once. The bins stay clean on a schedule.</p></div>
+<div class="card"><h3>Deodorizing &amp; sanitizing</h3><p>The smell and the bacteria go together. Both get handled.</p></div>
+<div class="card"><h3>HOA &amp; commercial</h3><p>Multi-bin and property accounts on a route.</p></div>
+</div>
+<div class="panel">
+<h3 style="margin-bottom:8px">Book a cleaning</h3>
+<p style="color:#9db8ab;font-size:14.5px;line-height:1.55">In the live business this button opens booking. In this demo it does not take bookings or payments.</p>
+<button class="btn" id="book" type="button">Book now (demo)</button>
+<p class="note" id="note" role="status">Demo only — no booking was made. This page recreates the design; it is not the live booking page.</p>
+</div>
+</div>
+
+<footer class="demofoot">© Kurt Anthony Morales — KM Web Design. All rights reserved.</footer>
+<script>
+document.getElementById('book').addEventListener('click',function(){document.getElementById('note').style.display='block';});
+</script>
+</body>
+</html>

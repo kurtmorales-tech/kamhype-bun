@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RavFia SecurePass / password generator — demo | Kurt Anthony Morales</title>
+<style>.demobar{position:sticky;top:0;z-index:50;display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;padding:9px 14px;background:#111;color:#f5f5f5;font:13px/1.4 system-ui,sans-serif}.demobar a{color:#f2c230;text-decoration:underline;min-height:24px;display:inline-flex;align-items:center}.demofoot{padding:22px 16px;text-align:center;font:12.5px/1.5 system-ui,sans-serif;opacity:.75}
+
+*{margin:0;box-sizing:border-box}body{background:#101418;color:#eef2f5;font-family:Inter,system-ui,sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:32px 20px 10px}
+h1{font-size:26px}.h1 span{color:#f2c230}
+.sub{color:#9fb0bc;font-size:14.5px;margin-top:8px;line-height:1.55}
+.panel{background:#181f26;border:1px solid #2a3540;border-radius:14px;padding:22px;margin-top:22px}
+.out{display:flex;gap:10px}
+.out input{flex:1;padding:13px 12px;border-radius:9px;border:1px solid #2a3540;background:#0c0f13;color:#fff;font-size:16.5px;font-family:ui-monospace,monospace}
+.copy{padding:0 16px;border:0;border-radius:9px;background:#f2c230;color:#141414;font-weight:800;cursor:pointer;min-height:44px}
+.strength{margin-top:12px;font-size:13px;letter-spacing:1.2px;font-weight:800}
+.bar{height:8px;border-radius:99px;background:#2a3540;margin-top:7px;overflow:hidden}
+.bar i{display:block;height:100%;background:#43c465;width:20%}
+label{display:flex;justify-content:space-between;align-items:center;margin-top:16px;font-size:14.5px}
+input[type=range]{width:55%}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.opts label{margin:0;background:#0c0f13;border:1px solid #2a3540;border-radius:9px;padding:11px 12px;cursor:pointer}
+.gen{margin-top:20px;width:100%;padding:13px;border:0;border-radius:9px;background:#2563eb;color:#fff;font-weight:800;font-size:15.5px;cursor:pointer;min-height:48px}
+</style>
+</head>
+<body>
+<div class="demobar"><span>Live demo — a working recreation of this design by Kurt Anthony Morales.</span><a href="/demos/index.html">All demos</a><a href="/previews/index.html">Screenshot previews</a><a href="/">Main site</a></div>
+
+<div class="wrap">
+<h1>RavFia <span>SecurePass</span></h1>
+<p class="sub">The password-generator design, built for real this time: it runs in your browser and generates on the spot. Nothing is sent or stored.</p>
+<div class="panel">
+<div class="out"><input id="pw" readonly aria-label="Generated password"><button class="copy" id="copy" type="button">Copy</button></div>
+<div class="strength" id="stxt">STRONG</div>
+<div class="bar"><i id="sbar"></i></div>
+<label>Length <span id="lval">16</span><input type="range" id="len" min="8" max="40" value="16"></label>
+<div class="opts">
+<label><span>Uppercase</span><input type="checkbox" id="up" checked></label>
+<label><span>Lowercase</span><input type="checkbox" id="low" checked></label>
+<label><span>Numbers</span><input type="checkbox" id="num" checked></label>
+<label><span>Symbols</span><input type="checkbox" id="sym" checked></label>
+</div>
+<button class="gen" id="gen" type="button">Generate password</button>
+</div>
+</div>
+
+<footer class="demofoot">© Kurt Anthony Morales — KM Web Design. All rights reserved.</footer>
+<script>
+var sets={up:'ABCDEFGHJKLMNPQRSTUVWXYZ',low:'abcdefghijkmnpqrstuvwxyz',num:'23456789',sym:'!@#$%^&*()-_=+'};
+function gen(){
+ var pool='',req=[];
+ ['up','low','num','sym'].forEach(function(k){if(document.getElementById(k).checked){pool+=sets[k];req.push(sets[k]);}});
+ if(!pool){pool=sets.low;req=[sets.low];}
+ var len=+document.getElementById('len').value,out=[];
+ var buf=new Uint32Array(len);crypto.getRandomValues(buf);
+ req.forEach(function(s,i){out.push(s[buf[i]%s.length]);});
+ for(var i=req.length;i<len;i++){out.push(pool[buf[i]%pool.length]);}
+ for(var j=out.length-1;j>0;j--){var r=new Uint32Array(1);crypto.getRandomValues(r);var k=r[0]%(j+1);var t=out[j];out[j]=out[k];out[k]=t;}
+ document.getElementById('pw').value=out.join('');
+ var score=Math.min(100,len*3+req.length*8);
+ var bar=document.getElementById('sbar');bar.style.width=score+'%';
+ bar.style.background=score>70?'#43c465':(score>45?'#f2c230':'#e05252');
+ document.getElementById('stxt').textContent=score>70?'STRONG':(score>45?'MEDIUM':'WEAK');
+ document.getElementById('lval').textContent=len;
+}
+document.getElementById('gen').addEventListener('click',gen);
+document.getElementById('len').addEventListener('input',gen);
+document.querySelectorAll('.opts input').forEach(function(c){c.addEventListener('change',gen);});
+document.getElementById('copy').addEventListener('click',function(){var i=document.getElementById('pw');i.select();navigator.clipboard&&navigator.clipboard.writeText(i.value);this.textContent='Copied';var b=this;setTimeout(function(){b.textContent='Copy';},1200);});
+gen();
+</script>
+</body>
+</html>
