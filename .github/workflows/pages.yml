@@ -24,8 +24,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Bun
-        uses: oven/setup-bun@v2
+      - name: Install Bun
+        # npm install instead of the oven setup action: that action failed
+        # to resolve in this repo ("repository not found" at job setup).
+        run: npm install -g bun
 
       - name: Install dependencies
         run: bun install
