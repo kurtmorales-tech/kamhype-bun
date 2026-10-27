@@ -114,6 +114,7 @@ describe("multi-page renderer", () => {
       expect(existsSync(resolve(import.meta.dir, "../../public", src.slice(1)))).toBe(true);
     }
     expect(html).not.toContain("/assets/designer-desk.jpg");
+    expect(existsSync(resolve(import.meta.dir, "../../public/assets/designer-desk.jpg"))).toBe(false);
   });
 
   test("home presents the current learning focus and honest feedback state", () => {

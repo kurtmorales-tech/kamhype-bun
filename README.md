@@ -41,7 +41,7 @@ There are **zero runtime packages**. TypeScript and Bun types are dev-only. Befo
 
 ## GitHub Pages
 
-GitHub Pages cannot run the Bun server, so `.github/workflows/pages.yml` exports a static copy on every push to `main`: `scripts/export-static.ts` renders all five routes with the same `renderRoute()` the server uses, copies `public/`, and writes `404.html`, `.nojekyll`, `api/journey.json`, and the `CNAME` for the personal-site subdomain (`kurtmorales.kmwebdesign.xyz`, set in the workflow). For a project Pages URL instead of a custom domain, set `BASE_PATH=/kamhype-bun` and drop the `CNAME` in the workflow. For Actions-based Pages deployments, GitHub ignores the artifact's `CNAME` file: set the same hostname in repository Settings → Pages; the export uses `CNAME` to validate its own URLs. The Bun server (`bun run start`) remains the full version, including `/api/journey` and `/health`.
+GitHub Pages cannot run the Bun server, so `.github/workflows/pages.yml` exports a static copy on every push to `main`: `scripts/export-static.ts` renders all five routes with the same `renderRoute()` the server uses, copies `public/`, and writes `404.html`, `.nojekyll`, `api/journey.json`, and the `CNAME` for the personal-site subdomain (`kurtmorales.kmwebdesign.xyz`, set in the workflow). For a project Pages URL instead of a custom domain, set `BASE_PATH=/kamhype-bun` and drop the `CNAME` in the workflow. For Actions-based Pages deployments, GitHub ignores the artifact's `CNAME` file: set the same hostname in repository Settings → Pages; the export uses `CNAME` to validate its own URLs. The deploy job installs from the committed lockfile, runs tests and typechecks, then exports and publishes; failed checks stop deployment. CodeQL runs separately on pushes and pull requests. The Bun server (`bun run start`) remains the full version, including `/api/journey` and `/health`.
 
 ## Search discovery
 
@@ -57,4 +57,5 @@ Once a verified deployment is reachable, submit its sitemap in Google Search Con
 bun run test
 bun run check
 bun run build
+bun run build:pages
 ```
