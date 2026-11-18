@@ -140,6 +140,18 @@ describe("multi-page renderer", () => {
     expect(renderRoute("/story").html).not.toContain('href="/home.css"');
   });
 
+  test("footer is clean and no page carries disclaimer wording", () => {
+    for (const path of routes) {
+      const html = renderRoute(path).html;
+      expect(html).not.toContain("illustrative");
+      expect(html).not.toContain("photo-note");
+      expect(html).not.toContain("vendor endorsement");
+      expect(html).toContain("©");
+      expect(html).toContain("KURT ANTHONY MORALES");
+    }
+    expect(renderRoute("/").html).not.toContain("tools-note");
+  });
+
   test("now page syncs the latest work from November 2026", () => {
     const html = renderRoute("/now").html;
     expect(html).toContain('id="latest-work"');

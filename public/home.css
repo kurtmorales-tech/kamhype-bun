@@ -29,7 +29,6 @@
 .technology-kind{font:500 .64rem/1.5 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:#405448}
 .technology-card h3{font:500 1.6rem/1.2 var(--body);margin:.7rem 0 1rem;text-transform:none;letter-spacing:-.02em}
 .technology-card>p:last-child{font-size:.98rem;line-height:1.65;margin-bottom:0;color:#35413b}
-.tools-note{font-size:.8rem;line-height:1.6;color:#405448;margin:1.5rem 0 0}
 .home-testimonials{background:#e3e7e5;color:var(--ink)}
 .testimonial-empty{border-top:1px solid #819080;padding-top:1.5rem}
 .testimonial-mark{font:400 5rem/.8 Georgia,serif;color:#526d25;display:block}

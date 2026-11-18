@@ -88,7 +88,7 @@ function siteHeader(current: PagePath | null): string {
 }
 
 function siteFooter(): string {
-  return `<footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="/">KAMHYPE<span>.</span></a><p>${escapeHtml(journey.name)}<br>${escapeHtml(journey.origin.city)}, Philippines → Las Vegas, USA</p><a href="#top">Back to top ↑</a></div><div class="footer-bottom"><span>BUILT WITH BUN / TYPESCRIPT / CURIOSITY</span><span>© ${new Date().getFullYear()} ${escapeHtml(journey.name.toUpperCase())}</span></div><p class="photo-note">Personal portraits and design screenshots are supplied collection images. Location, construction, painting and sports photos are illustrative, not photographs of Kurt at work or play. Completion-badge screenshots are presented as supplied, not independently verified credentials. Original repository photo credits: Property Report Philippines (Tagum), Lenna for Nevada (Las Vegas), Go Asia Technology (construction), Saba Manpower (painter), Vieclam Philippine (basketball), Marcus Scigliano Photography (billiards).</p></div></footer>`;
+  return `<footer class="site-footer"><div class="container"><div class="footer-main"><a class="footer-brand" href="/">KAMHYPE<span>.</span></a><p>${escapeHtml(journey.name)}<br>${escapeHtml(journey.origin.city)}, Philippines → Las Vegas, USA</p><a href="#top">Back to top ↑</a></div><div class="footer-bottom"><span>BUILT WITH BUN / TYPESCRIPT / CURIOSITY</span><span>© ${new Date().getFullYear()} ${escapeHtml(journey.name.toUpperCase())}</span></div></div></footer>`;
 }
 
 export function pageShell(options: { current: PagePath | null; title: string; description: string; body: string; notFound?: boolean }): string {
