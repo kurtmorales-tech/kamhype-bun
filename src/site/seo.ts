@@ -63,6 +63,7 @@ export function llmsText(): string | null {
 - [Facebook](${journey.links.facebook}): Kamhype on Facebook.
 - [LinkedIn](${journey.links.linkedin}): Kurt Anthony Morales on LinkedIn.
 - [X](${journey.links.x}): Kamhype on X.
+- [Reddit](${journey.links.reddit}): Kamhype on Reddit.
 `;
 }
 

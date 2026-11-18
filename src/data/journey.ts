@@ -57,6 +57,7 @@ export const journey = {
     facebook: "https://www.facebook.com/kamhypeofficial",
     linkedin: "https://www.linkedin.com/in/kurtanthonymorales/",
     x: "https://x.com/xkamhype",
+    reddit: "https://www.reddit.com/user/kamhypeofficial/",
     github: "https://github.com/kurtmorales-tech",
     skills: "https://www.skills.google/public_profiles/e568df3b-52f3-441d-8674-2891a64b3354",
     studio: "https://kmwebdesign.xyz",

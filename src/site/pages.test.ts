@@ -167,7 +167,7 @@ describe("multi-page renderer", () => {
     expect(html).toContain("Google Skills profile — Google Cloud &amp; AI course record");
     expect(html).toContain('href="https://www.linkedin.com/in/kurtanthonymorales/" target="_blank" rel="noopener" aria-label="Kurt Anthony Morales on LinkedIn"');
     expect(html).toContain('href="https://x.com/xkamhype" target="_blank" rel="noopener" aria-label="Kamhype on X"');
-    expect(html).not.toContain("reddit.com");
+    expect(html).toContain('href="https://www.reddit.com/user/kamhypeofficial/" target="_blank" rel="noopener" aria-label="Kamhype on Reddit"');
   });
 
   test("now page syncs the latest work from November 2026", () => {
