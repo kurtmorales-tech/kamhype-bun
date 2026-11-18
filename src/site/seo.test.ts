@@ -50,6 +50,8 @@ describe("search discovery metadata", () => {
       for (const route of indexedRoutes) expect(llms).toContain(`(${pageUrl(route)})`);
       expect(llms).toContain("https://www.skills.google/public_profiles/e568df3b-52f3-441d-8674-2891a64b3354");
       expect(llms).toContain("https://www.facebook.com/kamhypeofficial");
+      expect(llms).toContain("https://www.linkedin.com/in/kurtanthonymorales/");
+      expect(llms).toContain("https://x.com/xkamhype");
       expect(llms).not.toContain("illustrative");
       expect(robotsText()).toContain("Sitemap: https://example.org/kamhype-bun/sitemap.xml");
       const notFound = renderRoute("/missing").html;

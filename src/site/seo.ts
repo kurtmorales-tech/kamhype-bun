@@ -61,6 +61,8 @@ export function llmsText(): string | null {
 - [Google Skills](${journey.links.skills}): Kurt Anthony Morales on Google Skills — Google Cloud and AI course record.
 - [Instagram](${journey.links.instagram}): Kamhype on Instagram.
 - [Facebook](${journey.links.facebook}): Kamhype on Facebook.
+- [LinkedIn](${journey.links.linkedin}): Kurt Anthony Morales on LinkedIn.
+- [X](${journey.links.x}): Kamhype on X.
 `;
 }
 
