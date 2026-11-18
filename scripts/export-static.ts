@@ -9,7 +9,7 @@ import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync, readFileSync, rea
 import { join, resolve } from "node:path";
 import { renderRoute } from "../src/site/pages.ts";
 import { journey } from "../src/data/journey.ts";
-import { configuredSiteBase, indexedRoutes, robotsText, sitemapXml } from "../src/site/seo.ts";
+import { configuredSiteBase, indexedRoutes, llmsText, robotsText, sitemapXml } from "../src/site/seo.ts";
 
 const root = resolve(import.meta.dir, "..");
 const outDir = join(root, "pages-dist");
@@ -86,6 +86,8 @@ writeFileSync(join(outDir, "robots.txt"), robotsText());
 const sitemap = sitemapXml();
 if (sitemap) writeFileSync(join(outDir, "sitemap.xml"), sitemap);
 else console.warn("SITE_URL is unset; canonical URLs and sitemap.xml were omitted.");
+const llms = llmsText();
+if (llms) writeFileSync(join(outDir, "llms.txt"), llms);
 
 // GitHub Pages: skip Jekyll processing; set custom domain when provided
 writeFileSync(join(outDir, ".nojekyll"), "");

@@ -1,3 +1,4 @@
+import { journey } from "../data/journey.ts";
 import type { PagePath } from "./components.ts";
 
 // Keep the crawlable routes in one place for the static export and sitemap.
@@ -34,6 +35,33 @@ export function pageUrl(path: PagePath): string | null {
 export function robotsText(): string {
   const sitemap = siteUrl("/sitemap.xml");
   return `User-agent: *\nAllow: /\n${sitemap ? `Sitemap: ${sitemap}\n` : ""}`;
+}
+
+export function llmsText(): string | null {
+  const base = configuredSiteBase();
+  if (!base) return null;
+  const page = (route: string): string => `${base}${route === "/" ? "/" : `${route}/`}`;
+  return `# Kurt Anthony Morales (Kamhype)
+
+> Personal site of Kurt Anthony Morales — web designer and frontend developer based in Las Vegas, Nevada. Founder of KM Web Design and part of Ravfia Strategic Operations. From Tagum City, Philippines to Las Vegas: hands-on work, web design, and a learning record across cloud, AI, and cybersecurity.
+
+## Pages
+
+- [Home](${page("/")}): The story so far — origin, toolbox, and the chapters of the journey.
+- [The Story](${page("/story")}): Tagum City to Las Vegas, chapter by chapter.
+- [Work](${page("/work")}): Hands-on work — construction, painting, events, sports, and print design.
+- [Curiosity](${page("/curiosity")}): The learning record — Google Cloud course badges and interface experiments.
+- [Today](${page("/now")}): Latest work and current projects.
+
+## Elsewhere
+
+- [KM Web Design](${journey.links.studio}): Websites for small businesses.
+- [Ravfia Line Striping](${journey.links.business}): Ravfia Strategic Operations — parking lot line striping in Las Vegas, Nevada.
+- [GitHub](${journey.links.github}): Projects and code by Kurt Morales.
+- [Google Skills](${journey.links.skills}): Kurt Anthony Morales on Google Skills — Google Cloud and AI course record.
+- [Instagram](${journey.links.instagram}): Kamhype on Instagram.
+- [Facebook](${journey.links.facebook}): Kamhype on Facebook.
+`;
 }
 
 export function sitemapXml(): string | null {

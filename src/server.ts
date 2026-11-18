@@ -2,7 +2,7 @@
 import { resolve, sep } from "node:path";
 import { journey } from "./data/journey.ts";
 import { renderRoute } from "./site/pages.ts";
-import { robotsText, sitemapXml } from "./site/seo.ts";
+import { llmsText, robotsText, sitemapXml } from "./site/seo.ts";
 import { downloadAssetHtml, staticContentType } from "./site/static-serving.ts";
 
 const PORT = Number(process.env.PORT ?? 3000);
@@ -62,6 +62,10 @@ const server = Bun.serve({
     if (url.pathname === "/sitemap.xml") {
       const xml = sitemapXml();
       return xml ? new Response(xml, { headers: { "content-type": "application/xml; charset=utf-8", ...SECURITY_HEADERS } }) : json({ error: "Site URL not configured" }, 404);
+    }
+    if (url.pathname === "/llms.txt") {
+      const text = llmsText();
+      return text ? new Response(text, { headers: { "content-type": "text/plain; charset=utf-8", ...SECURITY_HEADERS } }) : json({ error: "Site URL not configured" }, 404);
     }
 
     if (url.pathname === "/previews" || url.pathname === "/previews/") return serveStatic("/previews/index.html");

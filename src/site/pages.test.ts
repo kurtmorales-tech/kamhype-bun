@@ -162,7 +162,9 @@ describe("multi-page renderer", () => {
     expect(html).toContain("Ravfia Line Striping — Ravfia Strategic Operations");
     expect(html).toContain('href="https://github.com/kurtmorales-tech" target="_blank" rel="noopener" aria-label="Kurt Morales on GitHub"');
     expect(html).toContain('href="https://www.instagram.com/kamhypeofficial" target="_blank" rel="noopener" aria-label="Kamhype on Instagram"');
-    expect(html).not.toContain("facebook.com");
+    expect(html).toContain('href="https://www.facebook.com/kamhypeofficial" target="_blank" rel="noopener" aria-label="Kamhype on Facebook"');
+    expect(html).toContain('href="https://www.skills.google/public_profiles/e568df3b-52f3-441d-8674-2891a64b3354"');
+    expect(html).toContain("Google Skills profile — Google Cloud &amp; AI course record");
     expect(html).not.toContain("linkedin.com");
   });
 

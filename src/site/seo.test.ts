@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
 import { renderRoute } from "./pages.ts";
-import { configuredSiteBase, indexedRoutes, pageUrl, robotsText, sitemapXml } from "./seo.ts";
+import { configuredSiteBase, indexedRoutes, llmsText, pageUrl, robotsText, sitemapXml } from "./seo.ts";
 
 function withSiteUrl(url: string | undefined, run: () => void): void {
   const previous = process.env.SITE_URL;
@@ -19,6 +19,7 @@ describe("search discovery metadata", () => {
     withSiteUrl(undefined, () => {
       expect(configuredSiteBase()).toBeNull();
       expect(sitemapXml()).toBeNull();
+      expect(llmsText()).toBeNull();
       expect(robotsText()).toBe("User-agent: *\nAllow: /\n");
       const html = renderRoute("/").html;
       expect(html).not.toContain('rel="canonical"');
@@ -44,6 +45,12 @@ describe("search discovery metadata", () => {
       }
       expect(sitemap.match(/<url>/g)?.length).toBe(5);
       expect(sitemap).not.toContain("404");
+      const llms = llmsText()!;
+      expect(llms).toContain("# Kurt Anthony Morales (Kamhype)");
+      for (const route of indexedRoutes) expect(llms).toContain(`(${pageUrl(route)})`);
+      expect(llms).toContain("https://www.skills.google/public_profiles/e568df3b-52f3-441d-8674-2891a64b3354");
+      expect(llms).toContain("https://www.facebook.com/kamhypeofficial");
+      expect(llms).not.toContain("illustrative");
       expect(robotsText()).toContain("Sitemap: https://example.org/kamhype-bun/sitemap.xml");
       const notFound = renderRoute("/missing").html;
       expect(notFound).toContain('name="robots" content="noindex"');
