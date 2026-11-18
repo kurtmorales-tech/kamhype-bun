@@ -51,7 +51,7 @@ describe("search discovery metadata", () => {
       expect(llms).toContain("https://www.skills.google/public_profiles/e568df3b-52f3-441d-8674-2891a64b3354");
       expect(llms).toContain("https://www.facebook.com/kamhypeofficial");
       expect(llms).toContain("https://www.linkedin.com/in/kurtanthonymorales/");
-      expect(llms).toContain("https://x.com/xkamhype");
+      expect(llms).toContain("https://x.com/kamhypeofficial");
       expect(llms).toContain("https://www.reddit.com/user/kamhypeofficial/");
       expect(llms).not.toContain("illustrative");
       expect(robotsText()).toContain("Sitemap: https://example.org/kamhype-bun/sitemap.xml");

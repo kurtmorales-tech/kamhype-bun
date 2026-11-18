@@ -166,7 +166,8 @@ describe("multi-page renderer", () => {
     expect(html).toContain('href="https://www.skills.google/public_profiles/e568df3b-52f3-441d-8674-2891a64b3354"');
     expect(html).toContain("Google Skills profile — Google Cloud &amp; AI course record");
     expect(html).toContain('href="https://www.linkedin.com/in/kurtanthonymorales/" target="_blank" rel="noopener" aria-label="Kurt Anthony Morales on LinkedIn"');
-    expect(html).toContain('href="https://x.com/xkamhype" target="_blank" rel="noopener" aria-label="Kamhype on X"');
+    expect(html).toContain('href="https://x.com/kamhypeofficial" target="_blank" rel="noopener" aria-label="Kamhype on X"');
+    expect(html).not.toContain("x.com/xkamhype");
     expect(html).toContain('href="https://www.reddit.com/user/kamhypeofficial/" target="_blank" rel="noopener" aria-label="Kamhype on Reddit"');
   });
 
