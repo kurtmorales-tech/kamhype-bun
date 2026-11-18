@@ -152,6 +152,20 @@ describe("multi-page renderer", () => {
     expect(renderRoute("/").html).not.toContain("tools-note");
   });
 
+  test("footer carries descriptive SEO links and verified social icons", () => {
+    const html = renderRoute("/").html;
+    for (const href of ['href="/"', 'href="/story"', 'href="/work"', 'href="/curiosity"', 'href="/now"']) expect(html).toContain(href);
+    expect(html).toContain("Today — latest work &amp; current projects");
+    expect(html).toContain('href="https://kmwebdesign.xyz"');
+    expect(html).toContain("KM Web Design — websites for small businesses");
+    expect(html).toContain('href="https://ravfiastrategic0perations.com"');
+    expect(html).toContain("Ravfia Line Striping — Ravfia Strategic Operations");
+    expect(html).toContain('href="https://github.com/kurtmorales-tech" target="_blank" rel="noopener" aria-label="Kurt Morales on GitHub"');
+    expect(html).toContain('href="https://www.instagram.com/kamhypeofficial" target="_blank" rel="noopener" aria-label="Kamhype on Instagram"');
+    expect(html).not.toContain("facebook.com");
+    expect(html).not.toContain("linkedin.com");
+  });
+
   test("now page syncs the latest work from November 2026", () => {
     const html = renderRoute("/now").html;
     expect(html).toContain('id="latest-work"');
