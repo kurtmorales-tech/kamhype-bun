@@ -141,6 +141,20 @@ describe("multi-page renderer", () => {
     expect(renderRoute("/story").html).not.toContain('href="/home.css"');
   });
 
+  test("now page syncs the latest work from November 2026", () => {
+    const html = renderRoute("/now").html;
+    expect(html).toContain('id="latest-work"');
+    expect(html).toContain("Ravfina");
+    expect(html).toContain("Ravfia Lending &amp; Ravfia Coin (RVCN)");
+    expect(html).toContain("minted on Solana mainnet on November 18, 2026");
+    expect(html).toContain("Ravfia voice agent");
+    expect(html).toContain("Ravfia Mail");
+    expect(html).toContain('href="https://github.com/kurtmorales-tech/ravfia-token"');
+    expect(html).toContain('href="https://github.com/kurtmorales-tech"');
+    expect(html).toContain('href="https://ravfiastrategic0perations.com"');
+    expect(html).toContain('href="https://kmwebdesign.xyz"');
+  });
+
   test("chapter pager keeps the story sequence connected", () => {
     expect(chapterPager("/story")).toContain('href="/work"');
     expect(chapterPager("/now")).toContain('href="/curiosity"');

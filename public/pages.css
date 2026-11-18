@@ -169,6 +169,19 @@ body:has(.chapter-hero--story) .mobile-menu nav a:last-child,body:has(.chapter-h
 .now-description{max-width:35rem;padding-top:1rem}
 .now-description p{color:#c5d0c6;font-size:1.04rem;line-height:1.75;margin:0 0 1.25rem}
 .now-description a{color:var(--lime);text-underline-offset:4px}
+.latest{background:#182320;padding:clamp(4rem,7vw,8rem) 0}
+.latest-head{display:flex;align-items:end;justify-content:space-between;gap:3rem;padding:clamp(3rem,6vw,5rem) 0 3rem}
+.latest h2{font:700 clamp(3.4rem,6.5vw,7.5rem)/.88 var(--display);text-transform:uppercase;margin:0}
+.latest h2 em{font-style:normal;color:var(--lime)}
+.latest-head p{max-width:24rem;color:#c5d0c6;line-height:1.7;margin:0}
+.latest-list{border-bottom:1px solid var(--line)}
+.latest-row{display:grid;grid-template-columns:3rem minmax(0,1fr) auto;gap:clamp(1rem,3vw,3rem);align-items:start;padding:2rem 0;border-top:1px solid var(--line)}
+.latest-number{color:var(--lime);font:500 .76rem/1.5 var(--mono);padding-top:.55rem}
+.latest-kind{color:var(--lime);font:500 .72rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;margin:0 0 .6rem}
+.latest-row h3{font:700 clamp(1.9rem,3.4vw,3.2rem)/.95 var(--display);text-transform:uppercase;margin:0 0 .8rem}
+.latest-desc{max-width:38rem;color:#c5d0c6;line-height:1.7;margin:0}
+.latest-link{color:var(--paper);font:500 .78rem/1.5 var(--mono);white-space:nowrap;padding-top:.55rem;text-underline-offset:4px}
+.latest-link:hover{color:var(--lime)}
 .closing{background:var(--paper);color:var(--ink);padding:clamp(5rem,9vw,10rem) 0}
 .closing-inner>p{font:500 .75rem/1.4 var(--mono);margin:0 0 3rem}
 .closing h2{font:400 clamp(3.8rem,8vw,9rem)/1 var(--body);letter-spacing:-.04em;text-transform:none;margin:0 0 3rem}
@@ -207,8 +220,8 @@ body:has(.chapter-hero--story) .chapter-pager :focus-visible,body:has(.chapter-h
   .home-route-layout,.origin-layout,.curiosity-layout,.now-info{grid-template-columns:minmax(0,1fr)}
   .home-route-aside,.origin-narrative{max-width:43rem}
   .origin-layout{gap:2rem}
-  .work-head,.play-heading,.now-head{display:block}
-  .work-head p,.play-heading p,.now-head p{max-width:40rem;margin-top:2rem}
+  .work-head,.play-heading,.now-head,.latest-head{display:block}
+  .work-head p,.play-heading p,.now-head p,.latest-head p{max-width:40rem;margin-top:2rem}
   .work-row{grid-template-columns:2.5rem minmax(0,1fr) minmax(0,33%)}
   .now-info{gap:1rem}
   .home-invite-inner{align-items:start;flex-direction:column;gap:2rem}
@@ -225,7 +238,10 @@ body:has(.chapter-hero--story) .chapter-pager :focus-visible,body:has(.chapter-h
   .home-route,.home-invite{padding:5rem 0}
   .home-route h2,.home-invite h2{font-size:clamp(3rem,12vw,5rem)}
   .home-route-line{font-size:.6rem;gap:.5rem}
-  .origin,.work,.play,.now{padding:4rem 0 5rem}
+  .origin,.work,.play,.now,.latest{padding:4rem 0 5rem}
+  .latest-row{grid-template-columns:2rem minmax(0,1fr);gap:.7rem;padding:1.6rem 0}
+  .latest-link{grid-column:2;padding-top:0}
+  .latest h2{font-size:clamp(3rem,13vw,5rem)}
   .origin-layout{padding:3.5rem 0 3rem}
   .origin h2,.now h2,.curiosity h2{font-size:clamp(3.1rem,12vw,5rem)}
   .origin-image{aspect-ratio:1.2}

@@ -26,6 +26,7 @@ export const journey = {
     "Web Designer & Frontend Developer",
     "Founder, KM Web Design",
     "Manager, Ravfia Strategic Operations LLC",
+    "Builder, Ravfina & Ravfia Lending",
   ],
   learningFocus: {
     topics: ["Rust", "Cybersecurity"],
@@ -53,6 +54,7 @@ export const journey = {
   },
   links: {
     instagram: "https://www.instagram.com/kamhypeofficial",
+    github: "https://github.com/kurtmorales-tech",
     studio: "https://kmwebdesign.xyz",
     business: "https://ravfiastrategic0perations.com",
   },
