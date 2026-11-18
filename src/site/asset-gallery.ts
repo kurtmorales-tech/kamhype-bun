@@ -6,7 +6,6 @@ const asset = (id: string, file: string, title: string, description: string, wid
 // Placement is based on visual review, not filenames alone. The owner supplied
 // authorship instructions; screenshots do not establish client work or results.
 export const portraits = [
-  asset("portrait-casual", "me2.png", "A personal introduction", "Kurt in a cream cardigan over a navy T-shirt, hands in his pockets, shown as a cutout.", 1024, 1536),
   asset("portrait-formal", "me.png", "The next chapter", "Portrait in a gray suit and pink shirt against a dark studio-style background.", 1024, 1536),
 ];
 export const printDesigns = [
@@ -61,8 +60,8 @@ export function assetGallery(id: string, eyebrow: string, title: string, introdu
   return `<section class="asset-gallery${compact ? " asset-gallery--badges" : ""}" id="${id}" aria-labelledby="${id}-title"><div class="container"><header class="asset-gallery-heading"><p class="info-kicker">${escapeHtml(eyebrow)}</p><h2 id="${id}-title">${escapeHtml(title)}</h2><p>${escapeHtml(introduction)}</p><a class="asset-original" href="/previews/index.html">Browse all portfolio previews <span aria-hidden="true">↗</span></a></header><div class="asset-grid">${items.map((item) => `<figure class="asset-entry"><a class="asset-preview" href="/previews/${encodeURIComponent(item.id)}.html" aria-label="View preview: ${escapeHtml(item.title)}">${assetImage(item)}</a><figcaption><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description)}</p><a class="asset-original" href="/assets/${encodeURIComponent(item.file)}">View full-size image <span aria-hidden="true">↗</span></a></figcaption></figure>`).join("")}</div></div></section>`;
 }
 
-export function portraitSection(which: 0 | 1): string {
-  const item = portraits[which];
+export function portraitSection(): string {
+  const item = portraits[0];
   if (!item) throw new Error("Missing portrait asset");
-  return `<section class="portrait-section" aria-labelledby="portrait-${which}-title"><div class="container portrait-layout"><figure>${assetImage(item)}<figcaption>PERSONAL IMAGE / ${which === 0 ? "CASUAL PORTRAIT" : "FORMAL PORTRAIT"}</figcaption></figure><div><p class="info-kicker">${which === 0 ? "BEHIND THE NAME" : "AFTER THE CROSSING"}</p><h2 id="portrait-${which}-title">${which === 0 ? "More than a place on a map." : "Still the same drive."}</h2><p>${which === 0 ? "Kamhype is the personal story of Kurt Anthony Morales: hands-on work, a move across the world, and an appetite for learning that keeps taking new forms." : "The move to Las Vegas marks a new chapter, not the end of the story. Work, design and learning continue through the pages that follow."}</p><a class="asset-original" href="${which === 0 ? "/story" : "/now"}">${which === 0 ? "Read the story" : "Explore the current work"} <span aria-hidden="true">↗</span></a></div></div></section>`;
+  return `<section class="portrait-section" aria-labelledby="portrait-title"><div class="container portrait-layout"><figure>${assetImage(item)}<figcaption>PERSONAL IMAGE / FORMAL PORTRAIT</figcaption></figure><div><p class="info-kicker">AFTER THE CROSSING</p><h2 id="portrait-title">Still the same drive.</h2><p>The move to Las Vegas marks a new chapter, not the end of the story. Work, design and learning continue through the pages that follow.</p><a class="asset-original" href="/now">Explore the current work <span aria-hidden="true">↗</span></a></div></div></section>`;
 }

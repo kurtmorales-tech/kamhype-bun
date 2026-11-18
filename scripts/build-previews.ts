@@ -29,7 +29,6 @@ const copyright = "© Kurt Anthony Morales — KM Web Design. All rights reserve
 const badgeNote = "course completion badge — coursework, not a professional certification.";
 
 const notes: Record<string, string> = {
-  "portrait-casual": "Kurt Anthony Morales in a cream cardigan over a navy T-shirt, shown as a cutout on a light card.",
   "portrait-formal": "A studio portrait of Kurt in a gray suit and pink shirt; it is not a historical image of his move.",
   "cleaning-vector": "Kurt's flat black-and-yellow Ravfia Cleaning vector card artwork with a green leaf mark.",
   "bin-wash-cards": "Ravfia Bin Wash card artwork showing front and back. Contacts and services inside the image are artwork, not current offers.",
@@ -153,7 +152,7 @@ const sections: { label: string; items: Preview[] }[] = [
   })) },
 ];
 const all = sections.flatMap((section) => section.items);
-if (all.length !== 42 || new Set(all.map((item) => item.id)).size !== all.length) throw new Error("Preview inventory must have 42 unique entries (41 image items and one code-only design)");
+if (all.length !== 41 || new Set(all.map((item) => item.id)).size !== all.length) throw new Error("Preview inventory must have 41 unique entries (40 image items and one code-only design)");
 if (Object.keys(notes).length !== reviewedAssets.length) throw new Error("Gallery handling notes have drifted from the source inventory");
 
 const css = `:root{color-scheme:light;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1a1a1a;background:#ffffff}

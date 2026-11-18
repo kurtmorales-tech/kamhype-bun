@@ -13,13 +13,13 @@ const copyright = "© Kurt Anthony Morales — KM Web Design. All rights reserve
 const readPreview = (id: string) => readFileSync(join(previewDir, `${id}.html`), "utf8");
 
 describe("checked-in standalone previews", () => {
-  test("the index links to exactly 41 image items and one code-only design", () => {
-    expect(reviewedAssets.length).toBe(34);
-    expect(ids.length).toBe(42);
+  test("the index links to exactly 40 image items and one code-only design", () => {
+    expect(reviewedAssets.length).toBe(33);
+    expect(ids.length).toBe(41);
     const files = readdirSync(previewDir).filter((file) => file.endsWith(".html")).sort();
     expect(files).toEqual(["index.html", ...ids.map((id) => `${id}.html`)].sort());
     const titles = ["index", ...ids].map((id) => readPreview(id).match(/<title>([^<]+)<\/title>/)?.[1]);
-    expect(new Set(titles).size).toBe(43);
+    expect(new Set(titles).size).toBe(42);
     const index = readPreview("index");
     const links = [...index.matchAll(/href="\/previews\/([a-z0-9-]+)\.html"/g)].map((match) => match[1]);
     expect(links).toEqual(ids);

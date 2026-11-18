@@ -87,7 +87,8 @@ describe("multi-page renderer", () => {
   });
 
   test("visually reviewed assets are placed by subject rather than dumped into one gallery", () => {
-    expect(renderRoute("/").html).toContain("portrait-casual-wide.webp");
+    expect(renderRoute("/").html).not.toContain("portrait-casual");
+    expect(renderRoute("/").html).not.toContain("home-portrait");
     expect(renderRoute("/story").html).toContain("portrait-formal-wide.webp");
     expect(renderRoute("/work").html).toContain("bin-wash-cards-wide.webp");
     expect(renderRoute("/now").html).toContain("km-agency-wide.webp");
@@ -112,10 +113,8 @@ describe("multi-page renderer", () => {
     }
     for (const img of html.match(/<img[^>]+\/assets\/curated\/[^>]+>/g) ?? []) {
       expect(img).toContain('srcset="');
-      if (img.includes('fetchpriority="high"')) {
-        expect(img).toContain('portrait-casual-wide.webp');
-        expect(img).not.toContain('loading="lazy"');
-      } else expect(img).toContain('loading="lazy"');
+      expect(img).toContain('loading="lazy"');
+      expect(img).not.toContain('fetchpriority="high"');
     }
   });
 
